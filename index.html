@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>مركز الإمام نافع لتعليم القرآن الكريم وتلقي القراءات</title>
+<meta name="description" content="مركز الإمام نافع لتعليم القرآن الكريم وتلقي القراءات - حفظ، تجويد، سند متصل، مسابقات قرآنية">
+<meta name="theme-color" content="#022c22">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" href="logo.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { emerald: {850:'#064e3b',900:'#022c22'}, olive:{600:'#3D5A11',700:'#2E430B'},
+    gold:{100:'#fdf8e6',300:'#f3e1a1',400:'#e8cd6d',500:'#D4AF37',600:'#B38F23',700:'#8C6F19'} },
+  fontFamily: { cairo:['Cairo','sans-serif'], amiri:['Amiri','serif'] } } } };
+</script>
+<style>
+body{font-family:'Cairo',sans-serif;background-color:#f8fafc}
+.quran-font{font-family:'Amiri',serif}
+.islamic-pattern{background-color:#0a2a1c;background-image:radial-gradient(ellipse at 50% -10%,rgba(212,175,55,.30),transparent 55%),radial-gradient(ellipse at 50% 115%,rgba(0,0,0,.50),transparent 60%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23d4af37' stroke-opacity='0.10'%3E%3Crect x='30' y='30' width='36' height='36'/%3E%3Crect x='30' y='30' width='36' height='36' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='26'/%3E%3Ccircle cx='48' cy='48' r='5'/%3E%3Cpath d='M48 8v12M48 76v12M8 48h12M76 48h12'/%3E%3C/g%3E%3Cg fill='%23d4af37' fill-opacity='0.10'%3E%3Ccircle cx='0' cy='0' r='2'/%3E%3Ccircle cx='96' cy='0' r='2'/%3E%3Ccircle cx='0' cy='96' r='2'/%3E%3Ccircle cx='96' cy='96' r='2'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(155deg,#04170f 0%,#0b3524 40%,#14532d 62%,#071f13 100%);background-size:auto,auto,96px 96px,auto}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#f1f1f1}
+::-webkit-scrollbar-thumb{background:#043927;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#b38f23}
+.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col pb-16 md:pb-0">
+
+<!-- تم حذف الشريط العلوي حسب طلب الإدارة -->
+
+<!-- الهيدر -->
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-md border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('home')">
+        <div class="relative w-14 h-14 rounded-2xl bg-emerald-900 border-2 border-gold-500 flex items-center justify-center overflow-hidden shadow">
+          <img id="site-logo-img" src="logo.png" alt="شعار مركز الإمام نافع" class="w-full h-full object-contain bg-white" onerror="logoFallback(this)">
+          <div id="site-logo-fb" style="display:none" class="absolute inset-0 items-center justify-center text-gold-400 text-2xl"><i class="fa-solid fa-book-quran"></i></div>
+        </div>
+        <div>
+          <h1 id="site-title" class="font-extrabold text-lg sm:text-xl text-emerald-900 leading-tight">مركز الإمام نافع</h1>
+          <p id="site-subtitle" class="text-xs text-gold-700 font-medium">لتعليم القرآن الكريم وتلقي القراءات</p>
+        </div>
+      </div>
+      <nav id="main-nav" class="hidden md:flex items-center gap-1 font-semibold text-sm"></nav>
+      <div class="hidden md:flex items-center gap-2">
+        <button onclick="switchTab('register')" class="bg-emerald-900 hover:bg-emerald-800 text-gold-300 font-semibold px-4 py-2 rounded-lg text-sm border border-gold-500 shadow transition flex items-center gap-2"><i class="fa-solid fa-pen-to-square text-base"></i> سجل الآن</button>
+      </div>
+      <button onclick="toggleDrawer(true)" class="md:hidden w-11 h-11 rounded-xl bg-emerald-900 text-gold-300 text-xl flex items-center justify-center border border-gold-500 shrink-0" aria-label="القائمة">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- قائمة الموبايل الجانبية -->
+<div id="drawer-overlay" onclick="toggleDrawer(false)" class="fixed inset-0 bg-black/50 z-[60] hidden"></div>
+<aside id="drawer" class="fixed top-0 bottom-0 right-0 w-72 max-w-[85vw] bg-white z-[61] shadow-2xl transition-transform duration-300 translate-x-full flex flex-col">
+  <div class="flex justify-between items-center p-4 bg-emerald-900 text-white border-b-2 border-gold-500">
+    <div class="flex items-center gap-2"><span class="relative w-9 h-9 rounded-xl bg-emerald-950 border border-gold-500 flex items-center justify-center text-gold-300 overflow-hidden"><i class="fa-solid fa-book-quran"></i><img src="logo.png" class="absolute inset-0 w-full h-full object-contain bg-white" alt="" onerror="this.remove()"></span><b class="text-sm">مركز الإمام نافع</b></div>
+    <button onclick="toggleDrawer(false)" class="w-9 h-9 rounded-lg bg-white/10 text-xl" aria-label="إغلاق">✕</button>
+  </div>
+  <nav id="drawer-nav" class="p-3 space-y-1 text-sm font-bold overflow-auto"></nav>
+  <div class="mt-auto p-4 border-t border-slate-100"><button onclick="switchTab('register');toggleDrawer(false)" class="w-full bg-emerald-900 text-gold-300 font-bold py-3 rounded-xl text-sm">📝 سجل الآن: <span dir="ltr">777 791 043</span></button></div>
+</aside>
+
+<!-- تنبيه حالة الاتصال -->
+<div id="offline-bar" class="hidden fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-[70] bg-slate-900 text-white text-xs font-bold px-5 py-2.5 rounded-full shadow-2xl border border-gold-500/60 items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-wifi text-red-400"></i><span>لا يوجد اتصال بالإنترنت — تُعرض نسخة محفوظة</span></div>
+
+<main class="flex-grow">
+<!-- ================= HOME ================= -->
+<section id="tab-home" class="tab-content">
+  <div class="relative islamic-pattern text-white py-14 sm:py-20 px-4 overflow-hidden border-b-4 border-gold-500">
+    <div class="max-w-5xl mx-auto text-center relative z-10 space-y-5">
+      <img src="mahktot.png" alt="مخطوطة مركز الإمام نافع" class="w-72 sm:w-[28rem] max-w-full h-auto mx-auto drop-shadow-2xl" onerror="heroLogoFallback(this)">
+      <div id="hero-logo-fb" style="display:none" class="w-20 h-20 mx-auto rounded-2xl bg-emerald-900 border-2 border-gold-500 items-center justify-center text-gold-400 text-4xl"><i class="fa-solid fa-book-quran"></i></div>
+      <div id="hero-slogan" class="inline-block px-5 py-2 bg-gold-500/15 rounded-full border border-gold-400/40 text-gold-300 text-sm sm:text-base font-bold quran-font">حيث تتصل القلوب برب السماء .. والأسانيد بسيد الأنبياء ﷺ</div>
+      <h1 id="hero-title" class="text-3xl sm:text-5xl font-black leading-tight quran-font">صَرۡحُ القُرۡآنِ وَالإِقۡرَاءِ بٱلأَسَانِيدِ المُتَّصِلَةِ</h1>
+      <p id="hero-lead" class="text-slate-200 text-base sm:text-lg max-w-3xl mx-auto font-light leading-relaxed">نعتني بضبط تلاوة كتاب الله، ونشر القراءات المتواترة على أيدي نخبة من المقرئين بالإسناد العالي.</p>
+      <div class="flex justify-center pt-2">
+        <button onclick="switchTab('register')" class="bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-3 rounded-xl text-base transition flex items-center gap-2 shadow-xl"><i class="fa-solid fa-pen-to-square text-xl"></i> التسجيل: <span dir="ltr">777 791 043</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="wrap-stats" class="max-w-6xl mx-auto -mt-8 px-4 relative z-20">
+    <div id="stats-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 bg-white rounded-2xl shadow-xl p-4 sm:p-6 border border-slate-100 text-center"></div>
+  </div>
+
+  <!-- الإعلانات (من ملفنا السابق - مدمجة بتصميم جديد) -->
+  <div id="wrap-announce" class="max-w-6xl mx-auto px-4 mt-8">
+    <div class="flex justify-between items-end mb-4">
+      <h2 id="announce-title" class="text-xl sm:text-2xl font-extrabold text-emerald-950">📢 الإعلانات</h2>
+    </div>
+    <div id="announce-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+
+  <div id="wrap-features" class="max-w-7xl mx-auto px-4 py-14">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <h3 id="feat-title" class="text-3xl font-extrabold text-emerald-950">رعايتكم القرآنية في بيئة علمية متميزة</h3>
+      <div class="w-16 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100 space-y-4">
+        <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center text-2xl"><i class="fa-solid fa-crown text-gold-600"></i></div>
+        <h4 id="f1t" class="text-xl font-bold text-slate-800">إقراء القراءات العشر</h4>
+        <p id="f1d" class="text-slate-600 text-sm leading-relaxed">تلقي القراءات السبع والعشر بخطوات منهجية رصينة.</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100 space-y-4">
+        <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center text-2xl"><i class="fa-solid fa-certificate"></i></div>
+        <h4 id="f2t" class="text-xl font-bold text-slate-800">أسانيد متصلة بالنبي ﷺ</h4>
+        <p id="f2d" class="text-slate-600 text-sm leading-relaxed">منح الإجازات بالسند المتصل بعد العرض والدقة في الضبط والتجويد.</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100 space-y-4">
+        <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center text-2xl"><i class="fa-solid fa-mosque text-gold-600"></i></div>
+        <h4 id="f3t" class="text-xl font-bold text-slate-800">حلقات في المساجد</h4>
+        <p id="f3d" class="text-slate-600 text-sm leading-relaxed">حلقات حضورية في أكثر من مسجد بمحافظة إب لجميع الفئات والأعمار.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="wrap-homenews" class="bg-slate-100 py-14 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-end mb-8">
+        <div><h2 id="hn-title" class="text-2xl sm:text-3xl font-extrabold text-emerald-950">أحدث الأنشطة والمنشورات</h2><p id="hn-desc" class="text-slate-500 text-sm mt-1">تابع جديد المركز وفعالياته العلمية</p></div>
+        <button onclick="switchTab('news')" class="text-emerald-800 font-bold text-sm hover:text-emerald-950 flex items-center gap-1">عرض الكل <i class="fa-solid fa-arrow-left text-xs"></i></button>
+      </div>
+      <div id="home-news-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="tab-about" class="tab-content hidden py-12 px-4 max-w-6xl mx-auto space-y-10">
+  <div class="text-center space-y-3"><span class="text-xs font-bold text-gold-600 tracking-wider uppercase">نبذة تعريفية</span>
+    <h2 id="about-title" class="text-3xl sm:text-4xl font-extrabold text-emerald-950">عن مركز الإمام نافع</h2>
+    <div class="w-20 h-1 bg-gold-500 mx-auto rounded-full"></div></div>
+  <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+    <div class="space-y-4">
+      <h3 class="text-2xl font-bold text-slate-800">التعريف بالمركز</h3>
+      <p id="about-intro1" class="text-slate-600 leading-relaxed text-justify">مؤسسة قرآنية تعليمية متخصصة تُعنى بخدمة القرآن الكريم وتدريسه، وإقراء القراءات المتواترة، وتأهيل الحفاظ والمقرئين وفق منهج علمي رصين وبإشراف نخبة من مشايخ الإقراء.</p>
+      <p id="about-intro2" class="text-slate-600 leading-relaxed text-justify">سمي المركز باسم الإمام نافع المدني أحد القراء السبعة تيمناً بهذه المدرسة المدنية العريقة في القراءة والإقراء.</p>
+      <div class="flex flex-wrap gap-3 pt-2">
+        <button onclick="switchTab('register')" class="bg-emerald-900 text-gold-300 px-5 py-2.5 rounded-xl text-sm font-bold"><i class="fa-solid fa-pen-to-square ml-1"></i> سجل الآن</button>
+        <a href="mailto:m.nafa.qq@gmail.com?subject=استفسار عن المركز" class="bg-slate-100 px-5 py-2.5 rounded-xl text-sm font-bold text-slate-700"><i class="fa-solid fa-envelope ml-1"></i> راسلنا بريدياً</a>
+      </div>
+    </div>
+    <div class="bg-emerald-900 text-white p-8 rounded-xl space-y-4 islamic-pattern border border-gold-500">
+      <div class="flex items-center gap-3"><i class="fa-solid fa-quote-right text-3xl text-gold-400"></i><h4 class="font-bold text-lg text-gold-300">من هو الإمام نافع؟</h4></div>
+      <p id="nafi-text" class="text-slate-200 text-sm leading-relaxed quran-font">هو نافع بن عبد الرحمن المدني، أحد القراء السبعة، قال عنه الإمام مالك: "نافع إمام الناس في القراءة بالمدينة". توفي سنة 169 هـ.</p>
+    </div>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3"><div class="text-gold-600 text-2xl"><i class="fa-solid fa-eye"></i></div><h4 class="font-bold text-lg text-emerald-950">الرؤية</h4><p id="about-vision" class="text-slate-600 text-sm leading-relaxed">الريادة في تعليم القرآن وتأهيل المقرئين بالسند المتصل.</p></div>
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3"><div class="text-gold-600 text-2xl"><i class="fa-solid fa-bullseye"></i></div><h4 class="font-bold text-lg text-emerald-950">الرسالة</h4><p id="about-mission" class="text-slate-600 text-sm leading-relaxed">نشر علوم القرآن وإتقان تلاوته وتخريج جيل قرآني متقن.</p></div>
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3"><div class="text-gold-600 text-2xl"><i class="fa-solid fa-star"></i></div><h4 class="font-bold text-lg text-emerald-950">الأهداف</h4><ul id="goals-list" class="text-slate-600 text-xs space-y-2 list-disc list-inside"><li>ضبط الحفظ وإتقان التجويد.</li><li>الإجازة بالسند المتصل إلى النبي ﷺ.</li><li>تدريس المتون (الجزرية، الشاطبية).</li></ul></div>
+  </div>
+</section>
+
+<!-- ================= STUDENT JOURNEY (رحلة الطالب) ================= -->
+<section id="tab-student" class="tab-content hidden py-12 px-4 max-w-6xl mx-auto space-y-8">
+  <div class="text-center space-y-3 max-w-3xl mx-auto">
+    <span id="st-eyebrow" class="text-xs font-bold text-gold-600 tracking-wider uppercase">من التسجيل إلى الإجازة</span>
+    <h2 id="st-title" class="text-3xl font-extrabold text-emerald-950">رحلة الطالب في المركز</h2>
+    <p id="st-desc" class="text-slate-600 text-sm">ست خطوات واضحة من أول يوم حتى السند المتصل إلى النبي ﷺ</p>
+  </div>
+  <div id="steps-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+  <div class="bg-emerald-900 text-white p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 islamic-pattern border border-gold-500">
+    <div><h3 id="cta-title" class="font-bold text-gold-300 text-lg">ابدأ رحلتك الآن</h3><p id="cta-desc" class="text-slate-200 text-sm">التسجيل مفتوح لجميع الفئات — المقاعد محدودة في كل حلقة</p></div>
+    <button onclick="switchTab('register')" class="bg-gold-500 hover:bg-gold-600 text-emerald-950 font-bold px-8 py-3 rounded-xl transition whitespace-nowrap"><i class="fa-solid fa-pen-to-square ml-1"></i> <span id="cta-btn">سجل الآن</span></button>
+  </div>
+</section>
+
+<!-- ================= NEWS ================= -->
+<section id="tab-news" class="tab-content hidden py-12 px-4 max-w-7xl mx-auto space-y-6">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-6">
+    <div><h2 id="news-title" class="text-3xl font-extrabold text-emerald-950">المنشورات</h2><p id="news-desc" class="text-slate-500 text-sm mt-1">مقالات وفوائد ومنشورات المركز القرآنية</p></div>
+    <div class="relative w-full md:w-64">
+      <input type="text" id="news-search-input" oninput="renderNews()" placeholder="بحث في المنشورات..." class="w-full pl-3 pr-9 py-2 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800">
+      <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-slate-400 text-sm"></i>
+    </div>
+  </div>
+  <div id="news-cats" class="flex gap-2 flex-wrap"></div>
+  <div id="news-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+</section>
+
+<!-- ================= ACTIVITIES (الأنشطة) ================= -->
+<section id="tab-activities" class="tab-content hidden py-12 px-4 max-w-7xl mx-auto space-y-6">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-6">
+    <div><h2 id="act-title" class="text-3xl font-extrabold text-emerald-950">الأنشطة</h2><p id="act-desc" class="text-slate-500 text-sm mt-1">فعاليات وأنشطة المركز القرآنية</p></div>
+    <div class="relative w-full md:w-64">
+      <input type="text" id="act-search-input" oninput="renderActivities()" placeholder="بحث في الأنشطة..." class="w-full pl-3 pr-9 py-2 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800">
+      <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-slate-400 text-sm"></i>
+    </div>
+  </div>
+  <div id="act-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+</section>
+
+<!-- ================= REGISTER (تسجيل) ================= -->
+<section id="tab-register" class="tab-content hidden py-12 px-4 max-w-6xl mx-auto space-y-8">
+  <div class="text-center space-y-3 max-w-2xl mx-auto">
+    <span id="reg-eyebrow" class="text-xs font-bold text-gold-600 tracking-wider uppercase">التسجيل مفتوح طوال العام</span>
+    <h2 id="reg-title" class="text-3xl font-extrabold text-emerald-950">تسجيل طالب جديد</h2>
+    <p id="reg-desc" class="text-slate-600 text-sm">املأ البيانات التالية وستُرسل تلقائياً إلى واتساب الإدارة 777 791 043 مع وقت وتاريخ التسجيل</p>
+  </div>
+  <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+    <form id="reg-form" onsubmit="return false" class="grid sm:grid-cols-2 gap-4">
+      <div><label class="block text-xs font-semibold text-slate-700 mb-1">الاسم الرباعي *</label><input id="rg-name" type="text" placeholder="مثال: محمد عبدالله صالح الحميري" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none"></div>
+      <div><label class="block text-xs font-semibold text-slate-700 mb-1">السكن (المحافظة - المديرية - المنطقة) *</label><input id="rg-home" type="text" placeholder="مثال: إب - الظهار - حي ..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none"></div>
+      <div class="sm:col-span-2"><label class="block text-xs font-semibold text-slate-700 mb-1">تاريخ الميلاد (يوم - شهر - سنة) *</label>
+        <div class="grid grid-cols-3 gap-2">
+          <select id="rg-day" onchange="calcAge()" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none bg-white"><option value="">اليوم</option></select>
+          <select id="rg-month" onchange="calcAge()" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none bg-white"><option value="">الشهر</option></select>
+          <select id="rg-year" onchange="calcAge()" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none bg-white"><option value="">السنة</option></select>
+        </div></div>
+      <div><label class="block text-xs font-semibold text-slate-700 mb-1">العمر (يُحسب تلقائياً)</label><div class="w-full px-4 py-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-sm font-bold text-emerald-900">العمر: <span id="rg-age-val">—</span></div></div>
+      <div><label class="block text-xs font-semibold text-slate-700 mb-1">المستوى</label><select id="rg-level" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none bg-white"><option>غير حافظ</option><option>حافظ غير مراجع</option><option>حافظ مستعد للاختبار</option></select></div>
+      <div><label class="block text-xs font-semibold text-slate-700 mb-1">رقم الجوال *</label><input id="rg-mobile" type="tel" placeholder="77xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none">
+        <label class="flex items-center gap-2 mt-2 text-xs font-bold text-emerald-900 cursor-pointer select-none"><input type="checkbox" id="rg-same-wa" checked onchange="toggleWaField()" class="w-4 h-4 accent-emerald-800"> واتساب بنفس الرقم</label></div>
+      <div id="rg-wa-wrap" style="display:none"><label class="block text-xs font-semibold text-slate-700 mb-1">رقم الواتساب *</label><input id="rg-whatsapp" type="tel" placeholder="77xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none"></div>
+      <div class="sm:col-span-2"><label class="block text-xs font-semibold text-slate-700 mb-1">ملاحظات إضافية</label><textarea id="rg-notes" rows="3" placeholder="أي معلومات تريد إخبار الإدارة بها..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none"></textarea></div>
+      <div class="sm:col-span-2"><div class="grid grid-cols-2 gap-2">
+        <button type="button" onclick="submitRegister('wa')" class="bg-emerald-900 hover:bg-emerald-800 text-gold-300 font-bold py-3.5 rounded-xl transition shadow text-sm"><i class="fa-brands fa-whatsapp ml-1"></i> إرسال التسجيل عبر الواتساب</button>
+        <button type="button" onclick="submitRegister('mail')" class="bg-gold-500 hover:bg-gold-600 text-emerald-950 font-bold py-3.5 rounded-xl transition shadow text-sm"><i class="fa-solid fa-envelope ml-1"></i> إرسال التسجيل عبر البريد</button>
+      </div>
+      <p class="text-center text-xs text-slate-400 mt-2">سيُرفق وقت وتاريخ التسجيل تلقائياً مع رسالتك</p></div>
+    </form>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="tab-contact" class="tab-content hidden py-12 px-4 max-w-6xl mx-auto space-y-8">
+  <div class="text-center space-y-3"><h2 id="contact-title" class="text-3xl font-extrabold text-emerald-950">تواصل معنا</h2><p id="contact-desc" class="text-slate-600 text-sm">التسجيل عبر واتساب (الأسرع) أو عبر البريد</p></div>
+  <div class="grid sm:grid-cols-2 gap-4">
+    <button onclick="switchTab('register')" class="bg-emerald-900 text-white p-5 rounded-2xl flex items-center gap-4 border border-gold-500 text-right w-full"><i class="fa-solid fa-pen-to-square text-4xl text-gold-400"></i><div><b>سجل الآن</b><div dir="ltr" class="text-gold-300 text-sm">+967 777 791 043</div></div></button>
+    <a href="mailto:m.nafa.qq@gmail.com?subject=استفسار" class="bg-white p-5 rounded-2xl flex items-center gap-4 border"><i class="fa-solid fa-envelope text-4xl text-emerald-800"></i><div><b>راسلنا بريدياً</b><div dir="ltr" class="text-slate-500 text-sm">m.nafa.qq@gmail.com</div></div></a>
+  </div>
+  <div class="grid md:grid-cols-2 gap-8">
+    <div class="bg-emerald-900 text-white p-8 rounded-2xl shadow-md space-y-5 islamic-pattern border border-gold-500">
+      <h3 class="text-xl font-bold text-gold-300 border-b border-gold-500/30 pb-3">معلومات التواصل</h3>
+      <div class="space-y-4 text-sm">
+        <div class="flex items-start gap-4"><div class="w-10 h-10 bg-gold-500/20 rounded-lg flex items-center justify-center text-gold-400 shrink-0"><i class="fa-solid fa-mosque"></i></div><div><p class="text-slate-300 text-xs">المركز الرئيسي</p><p id="contact-address-text" class="font-semibold">اليمن - إب - شارع العدين - جامع عمر بن الخطاب</p></div></div>
+        <div class="flex items-start gap-4"><div class="w-10 h-10 bg-gold-500/20 rounded-lg flex items-center justify-center text-gold-400 shrink-0"><i class="fa-solid fa-phone"></i></div><div><p class="text-slate-300 text-xs">الهاتف / واتساب</p><p class="font-semibold flex items-center gap-3"><a id="contact-phone-text" href="tel:+967777791043" dir="ltr" class="hover:text-gold-300">+967 777 791 043</a><a id="contact-wa-link" href="https://wa.me/967777791043" target="_blank" title="محادثة واتساب" class="w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-300 hover:bg-gold-500 hover:text-emerald-950 shrink-0"><i class="fa-brands fa-whatsapp"></i></a></p></div></div>
+        <div class="flex items-start gap-4"><div class="w-10 h-10 bg-gold-500/20 rounded-lg flex items-center justify-center text-gold-400 shrink-0"><i class="fa-solid fa-envelope"></i></div><div><p class="text-slate-300 text-xs">البريد</p><p class="font-semibold"><a id="contact-email-text" href="mailto:m.nafa.qq@gmail.com" dir="ltr" class="hover:text-gold-300">m.nafa.qq@gmail.com</a></p></div></div>
+        <div class="flex items-start gap-4"><div class="w-10 h-10 bg-gold-500/20 rounded-lg flex items-center justify-center text-gold-400 shrink-0"><i class="fa-regular fa-clock"></i></div><div><p class="text-slate-300 text-xs">أوقات العمل</p><p id="contact-hours-text" class="font-semibold">السبت - الخميس: 4:00 عصراً - 8:30 مساءً</p></div></div>
+      </div>
+      <div id="contact-extra" class="grid gap-2"></div>
+      <iframe id="cMap" title="خريطة المركز" loading="lazy" class="w-full h-44 rounded-xl border border-gold-500/30" src="https://www.openstreetmap.org/export/embed.html?bbox=44.13%2C13.93%2C44.22%2C13.99&layer=mapnik&marker=13.968%2C44.173"></iframe>
+    </div>
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+      <form onsubmit="return false" class="space-y-4">
+        <h3 class="text-xl font-bold text-slate-800">ضع استفسارك هنا</h3>
+        <div><label class="block text-xs font-semibold text-slate-700 mb-1">الاسم الكامل</label><input id="c-name" type="text" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none"></div>
+        <div><label class="block text-xs font-semibold text-slate-700 mb-1">رقم الهاتف / واتساب</label><input id="c-phone" type="tel" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none"></div>
+        <div><label class="block text-xs font-semibold text-slate-700 mb-1">الرسالة</label><textarea id="c-msg" rows="4" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none" placeholder="اكتب رسالتك هنا"></textarea></div>
+        <div class="grid grid-cols-2 gap-2">
+          <button type="button" onclick="sendInquiry('wa')" class="bg-emerald-900 hover:bg-emerald-800 text-gold-300 font-bold py-3 rounded-xl transition shadow text-sm"><i class="fa-brands fa-whatsapp ml-1"></i> إرسال عبر واتساب</button>
+          <button type="button" onclick="sendInquiry('mail')" class="bg-gold-500 hover:bg-gold-600 text-emerald-950 font-bold py-3 rounded-xl transition shadow text-sm"><i class="fa-solid fa-envelope ml-1"></i> إرسال عبر البريد</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ADMIN (مخفي عن الزوار) ================= -->
+<section id="tab-admin" class="tab-content hidden py-10 px-4 max-w-7xl mx-auto space-y-6">
+  <div class="bg-emerald-900 text-white p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-2 border-gold-500 shadow-lg">
+    <div><h2 class="text-2xl font-black text-gold-300 flex items-center gap-2"><i class="fa-solid fa-user-gear"></i> لوحة الإدارة</h2><p class="text-xs text-slate-200 mt-1">إدارة المنشورات والمسابقات والإعلانات والبيانات — التغييرات تُحفظ محلياً</p></div>
+    <div class="flex gap-2">
+      <button onclick="exportData()" class="bg-white/10 text-xs px-4 py-2 rounded-lg border border-white/20">⬇️ نسخة احتياطية</button>
+      <button onclick="document.getElementById('importFile').click()" class="bg-white/10 text-xs px-4 py-2 rounded-lg border border-white/20">⬆️ استيراد</button>
+      <input type="file" id="importFile" accept=".json" class="hidden" onchange="importData(this)">
+      <button onclick="logoutAdmin()" class="bg-red-600/80 text-white text-xs px-4 py-2 rounded-lg font-bold"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
+    </div>
+  </div>
+  <div class="flex border-b border-slate-200 gap-1 text-sm font-bold overflow-x-auto">
+    <button onclick="switchAdminSubTab('add-news')" class="admin-sub-btn px-4 py-3 border-b-2 border-emerald-800 text-emerald-800 whitespace-nowrap" data-subtab="add-news">📰 المنشورات</button>
+    <button onclick="switchAdminSubTab('add-comp')" class="admin-sub-btn px-4 py-3 border-b-2 border-transparent text-slate-500 whitespace-nowrap" data-subtab="add-comp">🏆 المسابقات</button>
+    <button onclick="switchAdminSubTab('announce')" class="admin-sub-btn px-4 py-3 border-b-2 border-transparent text-slate-500 whitespace-nowrap" data-subtab="announce">📢 الإعلانات</button>
+    <button onclick="switchAdminSubTab('msgs')" class="admin-sub-btn px-4 py-3 border-b-2 border-transparent text-slate-500 whitespace-nowrap" data-subtab="msgs">📥 الطلبات <span id="msgs-count"></span></button>
+    <button onclick="switchAdminSubTab('newsletter')" class="admin-sub-btn px-4 py-3 border-b-2 border-transparent text-slate-500 whitespace-nowrap" data-subtab="newsletter">✉️ النشرة البريدية <span id="subs-count"></span></button>
+    <button onclick="switchAdminSubTab('settings')" class="admin-sub-btn px-4 py-3 border-b-2 border-transparent text-slate-500 whitespace-nowrap" data-subtab="settings">⚙️ الإعدادات</button>
+  </div>
+
+  <div id="admin-subtab-add-news" class="admin-subtab space-y-6">
+    <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-4">
+      <h3 class="font-bold text-lg text-emerald-950">إضافة / تعديل منشور</h3>
+      <form onsubmit="handleSaveNews(event)" class="space-y-4">
+        <input type="hidden" id="news-edit-id">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-semibold mb-1">العنوان</label><input type="text" id="news-title-input" required class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">النوع</label><select id="news-kind-input" class="w-full px-3 py-2 border rounded-xl text-sm"><option value="post">📰 منشور (تبويب المنشورات)</option><option value="activity">📌 نشاط (تبويب الأنشطة)</option></select></div>
+          <div><label class="block text-xs font-semibold mb-1">التصنيف</label><select id="news-cat-input" class="w-full px-3 py-2 border rounded-xl text-sm"><option>إعلانات</option><option>أنشطة</option><option>فوائد قرآنية</option><option>إجازات</option></select></div>
+          <div><label class="block text-xs font-semibold mb-1">رابط الصورة (اختياري)</label><input type="url" id="news-img-input" placeholder="https://..." class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        </div>
+        <div><label class="block text-xs font-semibold mb-1">المحتوى</label><textarea id="news-content-input" rows="3" required class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+        <div class="flex gap-2"><button type="submit" class="px-6 py-2 bg-emerald-900 text-gold-300 font-bold rounded-xl text-xs">حفظ المنشور</button><button type="button" onclick="resetNewsForm()" class="px-4 py-2 bg-slate-200 rounded-xl text-xs font-bold">مسح</button></div>
+      </form>
+    </div>
+    <div><h4 class="font-bold mb-2">المنشورات الحالية</h4><div id="admin-news-list" class="space-y-3"></div></div>
+  </div>
+
+  <div id="admin-subtab-add-comp" class="admin-subtab hidden space-y-6">
+    <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-4">
+      <h3 class="font-bold text-lg text-emerald-950">إضافة / تعديل مسابقة</h3>
+      <form onsubmit="handleSaveCompetition(event)" class="space-y-4">
+        <input type="hidden" id="comp-edit-id">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-semibold mb-1">اسم المسابقة</label><input type="text" id="comp-title-input" required class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">الحالة</label><select id="comp-status-input" class="w-full px-3 py-2 border rounded-xl text-sm"><option value="current">🟢 قائمة (متاحة للتسجيل)</option><option value="soon">🟡 قريباً</option><option value="past">⚪ منتهية</option></select></div>
+          <div><label class="block text-xs font-semibold mb-1">الموعد</label><input type="text" id="comp-date-input" placeholder="2026-11-20" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">الجائزة</label><input type="text" id="comp-prize-input" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        </div>
+        <div><label class="block text-xs font-semibold mb-1">الشروط (سطر لكل شرط)</label><textarea id="comp-desc-input" rows="3" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+        <div><label class="block text-xs font-semibold mb-1">رابط التسجيل (يُترك فارغاً لاستخدام واتساب تلقائياً)</label><input type="url" id="comp-link-input" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div class="flex gap-2"><button type="submit" class="px-6 py-2 bg-emerald-900 text-gold-300 font-bold rounded-xl text-xs">حفظ المسابقة</button><button type="button" onclick="resetCompForm()" class="px-4 py-2 bg-slate-200 rounded-xl text-xs font-bold">مسح</button></div>
+      </form>
+    </div>
+    <div><h4 class="font-bold mb-2">المسابقات</h4><div id="admin-comp-list" class="space-y-3"></div></div>
+  </div>
+
+  <div id="admin-subtab-announce" class="admin-subtab hidden space-y-6">
+    <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-4">
+      <h3 class="font-bold text-lg">إضافة إعلان للرئيسية</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div><label class="block text-xs font-semibold mb-1">العنوان</label><input id="ann-title" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">الوصف</label><input id="ann-desc" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+      </div>
+      <button onclick="addAnnounce()" class="px-6 py-2 bg-emerald-900 text-gold-300 font-bold rounded-xl text-xs">➕ إضافة إعلان</button>
+    </div>
+    <div id="admin-announce-list" class="space-y-3"></div>
+  </div>
+
+  <div id="admin-subtab-msgs" class="admin-subtab hidden space-y-4">
+    <div class="flex justify-between items-center flex-wrap gap-2"><h3 class="font-bold text-lg">📥 طلبات التسجيل والاستفسارات</h3><div class="flex gap-2"><button onclick="exportMsgs()" class="text-xs bg-emerald-900 text-gold-300 px-3 py-1.5 rounded-lg font-bold">📥 تصدير Excel/CSV</button><button onclick="clearMsgs()" class="text-xs bg-red-100 text-red-700 px-3 py-1.5 rounded-lg font-bold">مسح الكل</button></div></div>
+    <input id="msgs-search" oninput="renderMsgs()" placeholder="🔍 بحث باسم الطالب أو الرقم..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-800 focus:outline-none">
+    <div id="msgs-list" class="space-y-3"></div>
+  </div>
+
+  <div id="admin-subtab-newsletter" class="admin-subtab hidden space-y-4">
+    <h3 class="font-bold text-lg">✉️ النشرة البريدية (<span id="subs-count2">0</span> مشترك)</h3>
+    <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-3">
+      <div><label class="block text-xs font-semibold mb-1">عنوان الرسالة</label><input id="nl-subject" class="w-full px-3 py-2 border rounded-xl text-sm" placeholder="مثال: إعلان مسابقة جديدة"></div>
+      <div><label class="block text-xs font-semibold mb-1">نص النشرة</label><textarea id="nl-body" rows="4" class="w-full px-3 py-2 border rounded-xl text-sm" placeholder="اكتب نص النشرة البريدية..."></textarea></div>
+      <div class="flex gap-2 flex-wrap"><button onclick="sendNewsletter()" class="px-5 py-2 bg-emerald-900 text-gold-300 font-bold rounded-xl text-xs">📤 إرسال للجميع</button><button onclick="exportSubs()" class="px-4 py-2 bg-slate-100 rounded-xl text-xs font-bold">⬇️ تصدير المشتركين</button><button onclick="clearSubs()" class="px-4 py-2 bg-red-100 text-red-700 rounded-xl text-xs font-bold">مسح الكل</button></div>
+      <p class="text-[11px] text-slate-400">يُفتح بريدك مع جميع المشتركين في نسخة مخفية (BCC) جاهزين للإرسال.</p>
+    </div>
+    <div id="subs-list" class="space-y-2"></div>
+  </div>
+
+  <div id="admin-subtab-settings" class="admin-subtab hidden space-y-3">
+    <div class="bg-white p-5 sm:p-6 rounded-2xl border shadow-sm space-y-3">
+      <h3 class="font-bold text-lg border-b pb-3">⚙️ التحكم الجذري بالموقع <span class="block text-xs font-normal text-slate-400 mt-1">عدّل أي نص يظهر في الموقع من هنا — كأنك تعدل الكود مباشرة</span></h3>
+      <form onsubmit="handleSaveSettings(event)" class="space-y-3">
+      <details class="border rounded-xl overflow-hidden" open><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">🏠 الهوية والتواصل</summary><div class="p-4 grid md:grid-cols-2 gap-3">
+        <div><label class="block text-xs font-semibold mb-1">اسم المركز</label><input data-set="title" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">الوصف الفرعي</label><input data-set="subtitle" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div class="md:col-span-2"><label class="block text-xs font-semibold mb-1">الشعار (logo.png أو رابط)</label><input data-set="logoUrl" dir="ltr" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">الهاتف / واتساب (دولي)</label><input data-set="phone" dir="ltr" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">البريد</label><input data-set="email" dir="ltr" type="email" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">العنوان</label><input data-set="address" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">أوقات العمل (افصل بـ | لسطر جديد)</label><input data-set="hours" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+      </div></details>
+      <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">✨ نصوص الواجهة الرئيسية</summary><div class="p-4 space-y-3">
+        <div><label class="block text-xs font-semibold mb-1">العنوان القرآني الكبير</label><textarea data-set="heroTitle" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm quran-font"></textarea></div>
+        <div><label class="block text-xs font-semibold mb-1">الشعار اللفظي (تحت المخطوطة)</label><input data-set="slogan" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">النص الترحيبي</label><textarea data-set="heroLead" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+      </div></details>
+      <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">📊 الإحصائيات (أيقونات وأرقام وتسميات)</summary><div class="p-4 space-y-3">
+        <input type="hidden" id="st-id">
+        <div class="grid grid-cols-2 gap-3">
+          <div class="md:col-span-2"><label class="block text-xs font-semibold mb-1">الأيقونة (صورتك الخاصة)</label>
+            <div class="flex gap-2 items-center">
+              <span class="w-11 h-11 rounded-xl border bg-white shrink-0 flex items-center justify-center overflow-hidden text-emerald-800"><i id="st-icon-fa" class="fa-solid fa-star"></i><img id="st-icon-prev" class="w-full h-full object-contain hidden" alt=""></span>
+              <input id="st-icon" oninput="updateIconPrev()" placeholder="ارفع صورة أو الصق رابطها أو اكتب fa-star" dir="ltr" class="flex-1 min-w-0 px-3 py-2 border rounded-xl text-sm">
+              <label class="px-3 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold cursor-pointer whitespace-nowrap">📤 رفع<input id="st-icon-file" type="file" accept="image/*" class="hidden" onchange="handleIconFile(this)"></label>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-1">الصورة المرفوعة تُصغّر تلقائياً وتُحفظ داخل الموقع — أو الصق رابط صورة جاهز.</p>
+          </div>
+          <div><label class="block text-xs font-semibold mb-1">الرقم</label><input id="st-value" placeholder="مثال: 500" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        </div>
+        <div><label class="block text-xs font-semibold mb-1">التسمية</label><input id="st-label" placeholder="مثال: طالب وطالبة" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <label class="flex items-center gap-2 text-xs font-bold cursor-pointer"><input type="checkbox" id="st-plus" checked class="w-4 h-4 accent-emerald-800"> إظهار علامة + بعد الرقم</label>
+        <div class="flex gap-2"><button type="button" onclick="saveStat()" class="px-5 py-2 bg-emerald-900 text-gold-300 font-bold rounded-xl text-xs">💾 حفظ الإحصائية</button><button type="button" onclick="clearStatForm()" class="px-4 py-2 bg-slate-200 rounded-xl text-xs font-bold">جديد</button></div>
+        <div id="stats-admin-list" class="space-y-2"></div>
+      </div></details>
+      <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">🗂️ القوائم العلوية والروابط السريعة</summary><div class="p-4 space-y-3">
+        <p class="text-[11px] text-slate-400">تحكم بظهور كل قائمة (الرئيسية، عن المركز...) في الموقع، وعدّل تسميتها، واختر ما يظهر منها في الروابط السريعة أسفل الصفحة.</p>
+        <div id="menus-admin-list" class="space-y-2"></div>
+        <button type="button" onclick="resetMenus()" class="px-4 py-2 bg-slate-200 rounded-xl text-xs font-bold">↩️ استعادة القوائم الافتراضية</button>
+      </div></details>
+      <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">➕ عناوين تواصل إضافية</summary><div class="p-4 space-y-3">
+        <p class="text-[11px] text-slate-400">تظهر أسفل عمود "تواصل" في التذييل وفي صفحة تواصل معنا — أضف فروعاً أو أرقاماً أو عناوين جديدة.</p>
+        <div class="grid md:grid-cols-3 gap-3">
+          <div><label class="block text-xs font-semibold mb-1">العنوان</label><input id="ct-label" placeholder="مثال: فرع الحوبان" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">القيمة</label><input id="ct-value" placeholder="مثال: شارع ... - 77xxxxxxx" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">رابط (اختياري)</label><input id="ct-link" dir="ltr" placeholder="https://wa.me/... أو https://maps..." class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        </div>
+        <button type="button" onclick="addContact()" class="px-5 py-2 bg-emerald-900 text-gold-300 font-bold rounded-xl text-xs">➕ إضافة العنوان</button>
+        <div id="contacts-admin-list" class="space-y-2"></div>
+      </div></details>
+      <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">🧩 عناوين الأقسام والفقرات</summary><div class="p-4 grid md:grid-cols-2 gap-3">
+        <div><label class="block text-xs font-semibold mb-1">عنوان الإعلانات</label><input data-set="announceT" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">عنوان المميزات</label><input data-set="featT" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">عنوان آخر المنشورات</label><input data-set="homeNewsT" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">وصفها</label><input data-set="homeNewsD" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">عنوان المنشورات</label><input data-set="newsT" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">وصف المنشورات</label><input data-set="newsD" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">عنوان الأنشطة</label><input data-set="actT" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">وصف الأنشطة</label><input data-set="actD" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">عنوان صفحة عن المركز</label><input data-set="aboutT" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">السطر العلوي للتسجيل</label><input data-set="regEyebrow" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">عنوان التسجيل</label><input data-set="regT" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">وصف التسجيل</label><input data-set="regD" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">عنوان التواصل</label><input data-set="contactT" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">وصف التواصل</label><input data-set="contactD" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+      </div></details>
+      <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">🕌 نصوص صفحة عن المركز</summary><div class="p-4 space-y-3">
+        <div><label class="block text-xs font-semibold mb-1">التعريف (فقرة 1)</label><textarea data-set="aboutIntro1" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+        <div><label class="block text-xs font-semibold mb-1">التعريف (فقرة 2)</label><textarea data-set="aboutIntro2" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+        <div><label class="block text-xs font-semibold mb-1">صندوق: من هو الإمام نافع؟</label><textarea data-set="nafiText" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+        <div class="grid md:grid-cols-3 gap-3">
+          <div><label class="block text-xs font-semibold mb-1">هدف 1</label><input data-set="goals.0" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">هدف 2</label><input data-set="goals.1" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">هدف 3</label><input data-set="goals.2" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        </div>
+        <div><label class="block text-xs font-semibold mb-1">الرؤية</label><textarea data-set="vision" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+        <div><label class="block text-xs font-semibold mb-1">الرسالة</label><textarea data-set="mission" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+      </div></details>
+      <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">🌟 بطاقات المميزات الثلاث</summary><div class="p-4 grid md:grid-cols-3 gap-3">
+        <div class="space-y-2"><label class="block text-xs font-bold text-gold-700">البطاقة 1</label><input data-set="feat.0.t" placeholder="العنوان" class="w-full px-3 py-2 border rounded-xl text-sm"><textarea data-set="feat.0.d" rows="2" placeholder="الوصف" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+        <div class="space-y-2"><label class="block text-xs font-bold text-gold-700">البطاقة 2</label><input data-set="feat.1.t" placeholder="العنوان" class="w-full px-3 py-2 border rounded-xl text-sm"><textarea data-set="feat.1.d" rows="2" placeholder="الوصف" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+        <div class="space-y-2"><label class="block text-xs font-bold text-gold-700">البطاقة 3</label><input data-set="feat.2.t" placeholder="العنوان" class="w-full px-3 py-2 border rounded-xl text-sm"><textarea data-set="feat.2.d" rows="2" placeholder="الوصف" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+      </div></details>
+      <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">🛤️ رحلة الطالب (الخطوات الست)</summary><div class="p-4 space-y-3">
+        <div class="grid md:grid-cols-3 gap-3">
+          <div><label class="block text-xs font-semibold mb-1">السطر العلوي</label><input data-set="stEyebrow" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">العنوان</label><input data-set="stT" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">الوصف</label><input data-set="stD" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-3">
+          <div class="border rounded-xl p-3 space-y-2"><label class="block text-xs font-bold text-gold-700">الخطوة 1</label><input data-set="steps.0.t" class="w-full px-3 py-2 border rounded-xl text-sm"><textarea data-set="steps.0.d" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+          <div class="border rounded-xl p-3 space-y-2"><label class="block text-xs font-bold text-gold-700">الخطوة 2</label><input data-set="steps.1.t" class="w-full px-3 py-2 border rounded-xl text-sm"><textarea data-set="steps.1.d" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+          <div class="border rounded-xl p-3 space-y-2"><label class="block text-xs font-bold text-gold-700">الخطوة 3</label><input data-set="steps.2.t" class="w-full px-3 py-2 border rounded-xl text-sm"><textarea data-set="steps.2.d" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+          <div class="border rounded-xl p-3 space-y-2"><label class="block text-xs font-bold text-gold-700">الخطوة 4</label><input data-set="steps.3.t" class="w-full px-3 py-2 border rounded-xl text-sm"><textarea data-set="steps.3.d" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+          <div class="border rounded-xl p-3 space-y-2"><label class="block text-xs font-bold text-gold-700">الخطوة 5</label><input data-set="steps.4.t" class="w-full px-3 py-2 border rounded-xl text-sm"><textarea data-set="steps.4.d" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+          <div class="border rounded-xl p-3 space-y-2 border-gold-500"><label class="block text-xs font-bold text-gold-700">الخطوة 6 (الذهبية)</label><input data-set="steps.5.t" class="w-full px-3 py-2 border rounded-xl text-sm"><textarea data-set="steps.5.d" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3">
+          <div><label class="block text-xs font-semibold mb-1">عنوان الدعوة</label><input data-set="ctaT" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">وصف الدعوة</label><input data-set="ctaD" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+          <div><label class="block text-xs font-semibold mb-1">نص الزر</label><input data-set="ctaBtn" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        </div>
+      </div></details>
+      <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">👁️ إظهار وإخفاء أقسام الموقع</summary><div class="p-4 grid grid-cols-2 md:grid-cols-3 gap-2 text-sm font-bold">
+        <label class="flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 cursor-pointer"><input type="checkbox" data-set="show.stats" class="w-4 h-4 accent-emerald-800"> الإحصائيات</label>
+        <label class="flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 cursor-pointer"><input type="checkbox" data-set="show.announce" class="w-4 h-4 accent-emerald-800"> الإعلانات</label>
+        <label class="flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 cursor-pointer"><input type="checkbox" data-set="show.features" class="w-4 h-4 accent-emerald-800"> المميزات</label>
+        <label class="flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 cursor-pointer"><input type="checkbox" data-set="show.homeNews" class="w-4 h-4 accent-emerald-800"> آخر المنشورات</label>
+        <label class="flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 cursor-pointer"><input type="checkbox" data-set="show.map" class="w-4 h-4 accent-emerald-800"> الخريطة</label>
+        <label class="flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 cursor-pointer"><input type="checkbox" data-set="show.newsletter" class="w-4 h-4 accent-emerald-800"> صندوق النشرة</label>
+      </div></details>
+      <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">🔐 التذييل والأمان</summary><div class="p-4 space-y-3">
+        <div><label class="block text-xs font-semibold mb-1">وصف التذييل</label><textarea data-set="footDesc" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm"></textarea></div>
+        <div><label class="block text-xs font-semibold mb-1">سطر الحقوق - اكتب {year} مكان السنة الحالية</label><input data-set="copyright" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">كلمة مرور الأدمن الجديدة (اتركها فارغة للإبقاء)</label><input id="set-pass" type="password" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+      </div></details>
+      <div class="flex gap-2 flex-wrap pt-1"><button type="submit" class="px-6 py-2.5 bg-emerald-900 text-gold-300 font-bold rounded-xl text-xs">💾 حفظ الكل</button><button type="button" onclick="resetAll()" class="px-4 py-2.5 bg-slate-200 rounded-xl text-xs font-bold">↩️ استعادة الافتراضي</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- شريط الهاتف -->
+<div id="mobile-nav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 md:hidden z-50 flex justify-around items-stretch py-1.5 px-0 shadow-lg"></div>
+
+<!-- بانر التثبيت -->
+<div id="install-banner" class="hidden fixed bottom-20 right-3 left-3 z-50 bg-emerald-950 text-white border-2 border-gold-500 rounded-2xl p-3 flex items-center gap-3 shadow-2xl md:left-auto md:max-w-sm">
+  <i class="fa-solid fa-mobile-screen text-2xl text-gold-400"></i>
+  <div class="flex-1 text-xs"><b>ثبّت المركز كتطبيق</b><div class="text-slate-300">يعمل بدون إنترنت ويفتح بضغطة</div></div>
+  <button onclick="promptInstall()" class="bg-gold-500 text-emerald-950 text-xs font-bold px-4 py-2 rounded-xl">تثبيت</button>
+  <button onclick="hideInstall()" class="text-slate-400"><i class="fa-solid fa-xmark"></i></button>
+</div>
+
+<!-- التذييل (5 نقرات = دخول سري للأدمن) -->
+<footer onclick="secretTap()" class="bg-emerald-950 text-white border-t-4 border-gold-500 pt-10 pb-8 px-4 mt-6 cursor-default select-none">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-6 mb-6 text-sm">
+    <div class="space-y-3"><h3 class="text-lg font-bold text-gold-300">مركز الإمام نافع</h3><p id="foot-desc" class="text-slate-300 text-xs leading-relaxed">مركز قرآني متخصص في إقراء القراءات المتواترة ومنح الإجازات بالسند المتصل.</p>
+      <div class="flex gap-2"><a href="https://wa.me/967777791043" target="_blank" class="w-9 h-9 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-300"><i class="fa-brands fa-whatsapp"></i></a><a href="mailto:m.nafa.qq@gmail.com" class="w-9 h-9 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-300"><i class="fa-solid fa-envelope"></i></a></div>
+      <div id="foot-nl" class="bg-white/5 border border-gold-500/30 rounded-xl p-3 space-y-2"><p class="text-xs font-bold text-gold-300"><i class="fa-solid fa-envelope-open-text ml-1"></i> الاشتراك بالنشرة البريدية</p><div class="flex gap-2" onclick="event.stopPropagation()"><input id="nl-email-foot" type="email" placeholder="بريدك الإلكتروني" dir="ltr" class="flex-1 min-w-0 px-3 py-1.5 rounded-lg text-xs text-slate-800 focus:outline-none"><button onclick="subscribeNews()" class="bg-gold-500 hover:bg-gold-600 text-emerald-950 text-xs font-bold px-3 py-1.5 rounded-lg whitespace-nowrap">اشترك</button></div></div></div>
+    <div class="space-y-2"><h4 class="font-bold text-gold-300">روابط سريعة</h4><div id="foot-links" class="flex flex-col gap-1 text-xs text-slate-300"></div></div>
+    <div class="text-xs text-slate-300 space-y-1"><h4 class="font-bold text-gold-300">تواصل</h4><p class="flex items-center gap-2"><a href="tel:+967777791043" class="flex items-center gap-2 hover:text-gold-300"><i class="fa-solid fa-phone text-gold-400"></i><span dir="ltr">+967 777 791 043</span></a><a href="https://wa.me/967777791043" target="_blank" title="محادثة واتساب" class="w-7 h-7 rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-300 hover:bg-gold-500 hover:text-emerald-950 shrink-0"><i class="fa-brands fa-whatsapp text-xs"></i></a></p><p><a href="mailto:m.nafa.qq@gmail.com" class="flex items-center gap-2 hover:text-gold-300"><i class="fa-solid fa-envelope text-gold-400"></i><span dir="ltr">m.nafa.qq@gmail.com</span></a></p><div id="foot-extra" class="space-y-1 pt-1"></div></div>
+  </div>
+  <div id="foot-copy" class="border-t border-gold-500/20 mt-2 pt-4 text-center text-xs text-slate-300"></div>
+</footer>
+
+<!-- عارض الصور المكبر -->
+<div id="lightbox" class="fixed inset-0 bg-black/85 z-[80] hidden items-center justify-center p-4" onclick="if(event.target===this)closeLightbox()">
+  <button onclick="closeLightbox()" class="absolute top-4 left-4 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl border border-white/30" aria-label="إغلاق">✕</button>
+  <img id="lightbox-img" src="" alt="صورة مكبرة" class="max-w-full max-h-[85vh] rounded-2xl shadow-2xl border-2 border-gold-500 object-contain bg-white">
+</div>
+
+<!-- نافذة الأدمن -->
+<div id="admin-auth-modal" class="fixed inset-0 bg-slate-900/60 z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl p-6 max-w-sm w-full space-y-4 shadow-2xl">
+    <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-emerald-950"><i class="fa-solid fa-lock text-gold-600 ml-1"></i> دخول الإدارة</h3><button onclick="closeAdminAuthModal()" class="text-slate-400"><i class="fa-solid fa-xmark"></i></button></div>
+    <p class="text-xs text-slate-500">للإدارة فقط — أدخل كلمة المرور</p>
+    <input type="password" id="admin-pass-input" placeholder="كلمة المرور" class="w-full px-3 py-2 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800">
+    <div id="admin-auth-error" class="text-red-600 text-xs hidden">كلمة المرور غير صحيحة!</div>
+    <div class="flex justify-end gap-2"><button onclick="closeAdminAuthModal()" class="px-4 py-2 bg-slate-100 rounded-lg text-xs font-bold">إلغاء</button><button onclick="verifyAdminPassword()" class="px-5 py-2 bg-emerald-900 text-gold-300 rounded-lg text-xs font-bold">دخول</button></div>
+  </div>
+</div>
+
+<div id="toast-msg" class="fixed top-5 left-5 bg-emerald-900 text-gold-300 px-4 py-3 rounded-xl shadow-xl z-50 text-xs font-bold hidden border border-gold-500/50 items-center gap-2"><i class="fa-solid fa-circle-check text-gold-400"></i><span id="toast-text">تمت العملية بنجاح</span></div>
+
+<script>
+/* ===== دمج الملفين: تصميم المرفق + نظام الإدارة والتسجيل والقيم الجديدة ===== */
+const WA_NUM = '967777791043';
+const MAIL = 'm.nafa.qq@gmail.com';
+const K = { settings:'nafi_site_v2', news:'nafi_news_v2', comps:'nafi_comps_v2', msgs:'nafi_msgs_v1', ann:'nafi_announce_v1', subs:'nafi_subs_v1' };
+function load(k,f){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):JSON.parse(JSON.stringify(f)); }catch(e){ return JSON.parse(JSON.stringify(f)); } }
+function save(k,v){ localStorage.setItem(k,JSON.stringify(v)); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function wa(text){ return 'https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(text); }
+
+const DEF_SETTINGS = { title:'مركز الإمام نافع', subtitle:'لتعليم القرآن الكريم وتلقي القراءات', logoUrl:'logo.png',
+  phone:'+967 777 791 043', email:MAIL, address:'اليمن - إب - شارع العدين - جامع عمر بن الخطاب', hours:'السبت - الأربعاء | بنين: 4:00 عصرًا | بنات: 9:00 صباحًا',
+  slogan:'حيث تتصل القلوب برب السماء .. والأسانيد بسيد الأنبياء ﷺ',
+  heroLead:'نعتني بضبط تلاوة كتاب الله، ونشر القراءات المتواترة على أيدي نخبة من المقرئين بالإسناد العالي.',
+  heroTitle:'صَرۡحُ القُرۡآنِ وَالإِقۡرَاءِ بٱلأَسَانِيدِ المُتَّصِلَةِ',
+  announceT:'📢 الإعلانات',
+  featT:'رعايتكم القرآنية في بيئة علمية متميزة',
+  feat:[{t:'إقراء القراءات العشر',d:'تلقي القراءات السبع والعشر بخطوات منهجية رصينة.'},{t:'أسانيد متصلة بالنبي ﷺ',d:'منح الإجازات بالسند المتصل بعد العرض والدقة في الضبط والتجويد.'},{t:'حلقات في المساجد',d:'حلقات حضورية في أكثر من مسجد بمحافظة إب لجميع الفئات والأعمار.'}],
+  homeNewsT:'أحدث الأنشطة والمنشورات', homeNewsD:'تابع جديد المركز وفعالياته العلمية',
+  aboutT:'عن مركز الإمام نافع',
+  aboutIntro1:'مؤسسة قرآنية تعليمية متخصصة تُعنى بخدمة القرآن الكريم وتدريسه، وإقراء القراءات المتواترة، وتأهيل الحفاظ والمقرئين وفق منهج علمي رصين وبإشراف نخبة من مشايخ الإقراء.',
+  aboutIntro2:'سمي المركز باسم الإمام نافع المدني أحد القراء السبعة تيمناً بهذه المدرسة المدنية العريقة في القراءة والإقراء.',
+  nafiText:'هو نافع بن عبد الرحمن المدني، أحد القراء السبعة، قال عنه الإمام مالك: "نافع إمام الناس في القراءة بالمدينة". توفي سنة 169 هـ.',
+  goals:['ضبط الحفظ وإتقان التجويد.','الإجازة بالسند المتصل إلى النبي ﷺ.','تدريس المتون (الجزرية، الشاطبية).'],
+  stEyebrow:'من التسجيل إلى الإجازة', stT:'رحلة الطالب في المركز', stD:'ست خطوات واضحة من أول يوم حتى السند المتصل إلى النبي ﷺ',
+  steps:[{t:'التسجيل',d:'املأ استمارة التسجيل ببياناتك واختر المسار المناسب لك: حفظ، تجويد، إقراء أو مسابقة.'},{t:'اختبار تحديد المستوى',d:'جلسة تلاوة وحفظ مع المشايخ لتحديد الحلقة والمسار الأنسب لمستواك.'},{t:'الالتحاق بالحلقة',d:'انتظم في حلقتك بأحد مساجد محافظة إب مع متابعة يومية من المعلم.'},{t:'المتابعة والمراجعة',d:'مقادير حفظ يومية ومراجعة تراكمية واختبارات شهرية لضمان الإتقان.'},{t:'الإتقان والختم',d:'ختم المنهج كاملاً بإتقان أمام لجنة من مشايخ المركز.'},{t:'الإجازة بالسند',d:'إجازة مسندة متصلة إلى النبي ﷺ في القراءات والروايات المختلفة.'}],
+  ctaT:'ابدأ رحلتك الآن', ctaD:'التسجيل مفتوح لجميع الفئات — المقاعد محدودة في كل حلقة', ctaBtn:'سجل الآن',
+  newsT:'المنشورات', newsD:'مقالات وفوائد ومنشورات المركز القرآنية',
+  actT:'الأنشطة', actD:'فعاليات وأنشطة المركز القرآنية',
+  regEyebrow:'التسجيل مفتوح طوال العام', regT:'تسجيل طالب جديد', regD:'املأ البيانات التالية وستُرسل تلقائياً إلى واتساب الإدارة 777 791 043 مع وقت وتاريخ التسجيل',
+  contactT:'تواصل معنا', contactD:'التسجيل عبر واتساب (الأسرع) أو عبر البريد',
+  footDesc:'مركز قرآني متخصص في إقراء القراءات المتواترة ومنح الإجازات بالسند المتصل.',
+  statsLabels:{students:'طالب وطالبة',ijaza:'مُجاز بالسند المتصل',iqra:'حلقة إقرائية',nam:'حلقة قرآنية نموذجية'},
+  show:{stats:true,announce:true,features:true,homeNews:true,map:true,newsletter:true},
+  menus:[
+    {id:'home',label:'الرئيسية',icon:'fa-house',show:true},
+    {id:'about',label:'عن المركز',icon:'fa-mosque',show:true},
+    {id:'student',label:'رحلة الطالب',icon:'fa-route',show:true},
+    {id:'news',label:'المنشورات',icon:'fa-newspaper',show:true},
+    {id:'activities',label:'الأنشطة',icon:'fa-kaaba',show:true},
+    {id:'register',label:'تسجيل',icon:'fa-pen-to-square',show:true},
+    {id:'contact',label:'تواصل معنا',icon:'fa-envelope',show:true}
+  ],
+  quickLinks:['home','student','register'],
+  copyright:'جميع الحقوق محفوظة © {year} مركز الإمام نافع',
+  contacts:[],
+  statsList:[
+    {icon:'fa-graduation-cap',value:'500',label:'طالب وطالبة',plus:false},
+    {icon:'fa-scroll',value:'1000',label:'مُجاز بالسند المتصل',plus:true},
+    {icon:'fa-book-open-reader',value:'20',label:'حلقة إقرائية',plus:true},
+    {icon:'fa-mosque',value:'17',label:'حلقة قرآنية نموذجية',plus:true}
+  ],
+  stats:{students:'500',ijaza:'1000+',halaqatIqra:'20+',halaqatNam:'17+'},
+  vision:'الريادة في تعليم القرآن وتأهيل المقرئين بالسند المتصل.',
+  mission:'نشر علوم القرآن وإتقان تلاوته وتخريج جيل قرآني متقن.', adminPass:'771944578' };
+
+const DEF_NEWS = [
+  {id:'n1',kind:'post',title:'افتتاح التسجيل في مقرأة القراءات العشر',cat:'إعلانات',date:'2026-10-10',body:'يعلن المركز عن فتح باب التسجيل في مقرأة الإقراء والقراءات العشر بالسند المتصل.',img:''},
+  {id:'n2',kind:'post',title:'تكريم دفعة جديدة من المجازين بالسند',cat:'إجازات',date:'2026-10-01',body:'كرم المركز 15 طالباً وطالبة بعد ختم السند المتصل في القراءات والروايات المختلفة.',img:''},
+  {id:'n3',kind:'activity',title:'دورة مكثفة في التجويد',cat:'أنشطة',date:'2026-09-15',body:'دورة في المخارج والصفات والمدود بمشاركة 60 طالباً مع اختبار وشهادات.',img:''}
+];
+const DEF_COMPS = [
+  {id:'c1',title:'مسابقة الإمام نافع السنوية للحفظ والتجويد',status:'current',date:'2026-11-20',prize:'جوائز + عمرة للمركز الأول',conds:['حفظ القرآن كاملاً أو 15 جزءاً','إتقان التجويد','اجتياز التصفيات'],link:''}
+];
+const DEF_ANN = [
+  {title:'التسجيل مفتوح للحلقات الحضورية بأكثر من مسجد في محافظة إب.',desc:'التسجيل متاح لجميع الفئات — سجل الآن عبر واتساب.'}
+];
+const PROGRAMS = [
+  {t:'برنامج الإقراء بالسند المتصل',lvl:'المستوى المتقدم',d:'تسميع القرآن كاملاً غيباً مع التجويد للحصول على الإجازة بالسند.',m1:'المدة: حسب الإتقان',m2:'الشرط: حفظ القرآن كاملاً'},
+  {t:'مقرأة القراءات العشر',lvl:'تخصص القراءات',d:'دراسة القراءات من طريق الشاطبية والدرة وتطبيق الروايات.',m1:'المدة: سنتان',m2:'الشرط: إجازة في حفص'},
+  {t:'حلقة تحسين التلاوة والتجويد',lvl:'التأسيس والضبط',d:'تصحيح التلاوة ودراسة المقدمة الجزرية نظرياً وتطبيقياً.',m1:'المدة: 6 أشهر',m2:'الشرط: القراءة الصحيحة'},
+  {t:'حلقات الحفظ والمراجعة',lvl:'جميع المستويات',d:'مقادير يومية ومراجعة تراكمية واختبارات شهرية: مبتدئ ومتوسط وخاتم.',m1:'يومي',m2:'مجموعات صغيرة'},
+  {t:'إعداد المعلمين والمقرئات',lvl:'دورة تأهيلية',d:'طرق التحفيظ والإدارة الصفية مع تدريب عملي في الحلقات.',m1:'عملي',m2:'شهادة اعتماد'},
+  {t:'براعم القرآن',lvl:'الصغار',d:'تحفيظ الصغار بالتلقين والقاعدة النورانية وآداب حملة القرآن.',m1:'تلقين',m2:'أنشطة'}
+];
+
+let siteSettings = load(K.settings, DEF_SETTINGS);
+let newsList = load(K.news, null) || migrateNews();
+let compList = load(K.comps, null) || migrateComps();
+let annList = load(K.ann, DEF_ANN);
+let inbox = load(K.msgs, []);
+let subs = load(K.subs, []);
+let isAdmin = sessionStorage.getItem('nafi_admin')==='1';
+let newsCat = 'الكل', compTab = 'current';
+
+// ترحيل من النسخ القديمة + فرض القيم الجديدة
+(function(){
+  let ch=false;
+  try{
+    const old1 = localStorage.getItem('nafi_settings_v1');
+    if(old1 && !localStorage.getItem(K.settings)){ const o=JSON.parse(old1); siteSettings=Object.assign({},DEF_SETTINGS,o); ch=true; }
+    const oldC = localStorage.getItem('nafi_center_site_settings');
+    if(oldC && !localStorage.getItem(K.settings)){ const o=JSON.parse(oldC); siteSettings.title=o.title||siteSettings.title; ch=true; }
+  }catch(e){}
+  if(!siteSettings.email || siteSettings.email.includes('info@')){ siteSettings.email=MAIL; ch=true; }
+  if(!siteSettings.phone || siteSettings.phone.includes('770 000') || siteSettings.phone.includes('771944578')){ siteSettings.phone='+967 777 791 043'; ch=true; }
+  if(!siteSettings.logoUrl){ siteSettings.logoUrl='logo.png'; ch=true; }
+  if(!siteSettings.stats){ siteSettings.stats=JSON.parse(JSON.stringify(DEF_SETTINGS.stats)); ch=true; }
+  const _st=siteSettings.stats||{};
+  if(_st.teachers!==undefined||_st.halaqat!==undefined||_st.halaqatIqra===undefined||_st.students==='850'||_st.students==='350+'||_st.ijaza===120||_st.ijaza==='120'){ siteSettings.stats=JSON.parse(JSON.stringify(DEF_SETTINGS.stats)); ch=true; }
+  if(['اليمن — إب، المركز الرئيسي','اليمن — صنعاء، شارع ... جوار مسجد ...','شارع المركز الرئيسي - بجوار جامع الإيمان','جامع عمر بن الخطاب - شارع العدين - إب'].includes(siteSettings.address)){ siteSettings.address=DEF_SETTINGS.address; ch=true; }
+  if(['السبت - الخميس: 8ص - 8م • الجمعة: 4م - 8م','السبت - الخميس: 4:00 عصراً - 8:30 مساءً'].includes(siteSettings.hours)){ siteSettings.hours=DEF_SETTINGS.hours; ch=true; }
+  if(!siteSettings.adminPass||['nafi123','1289'].includes(siteSettings.adminPass)){ siteSettings.adminPass='771944578'; ch=true; }
+  if(!siteSettings.slogan){ siteSettings.slogan=DEF_SETTINGS.slogan; ch=true; }
+  if(!siteSettings.heroLead){ siteSettings.heroLead=DEF_SETTINGS.heroLead; ch=true; }
+  Object.keys(DEF_SETTINGS).forEach(k=>{ if(siteSettings[k]===undefined){ try{ siteSettings[k]=JSON.parse(JSON.stringify(DEF_SETTINGS[k])); ch=true; }catch(e){} } });
+  if(ch){ save(K.settings,siteSettings); }
+  // الإعلانات: اعتماد نص الحلقات الحضورية وحذف إعلان مجلس قالون
+  const NEW_ANN={title:'التسجيل مفتوح للحلقات الحضورية بأكثر من مسجد في محافظة إب.',desc:'التسجيل متاح لجميع الفئات — سجل الآن عبر واتساب.'};
+  let annCh=false;
+  annList=annList.filter(a=>{ if(/قالون|مجلس إقراء/.test(a.title||'')){ annCh=true; return false; } return true; });
+  const _seen={}; annList=annList.filter(a=>{ const t=(a.title||'').trim(); if(_seen[t]){ annCh=true; return false; } _seen[t]=1; return true; });
+  const _mi=annList.findIndex(a=>/المغتربين|عن بعد|الزوم/.test((a.title||'')+(a.desc||'')));
+  if(_mi>-1){ annList[_mi]=NEW_ANN; annCh=true; }
+  if(!annList.some(a=>/الحلقات الحضورية/.test(a.title||''))){ annList.unshift(NEW_ANN); annCh=true; }
+  if(annCh) save(K.ann,annList);
+  // الأخبار: تحديث نص التكريم
+  let newsCh=false;
+  newsList.forEach(n=>{ if(n.body&&n.body.includes('في قراءة نافع وعاصم')){ n.body=n.body.replace('بعد ختم السند المتصل في قراءة نافع وعاصم','بعد ختم السند المتصل في القراءات والروايات المختلفة'); newsCh=true; } });
+  if(newsCh) save(K.news,newsList);
+  let kindCh=false;
+  newsList.forEach(n=>{ if(!n.kind){ n.kind=(n.cat==='أنشطة')?'activity':'post'; kindCh=true; } });
+  if(kindCh) save(K.news,newsList);
+})();
+function migrateNews(){
+  try{
+    const a = localStorage.getItem('nafi_news_v1'); if(a){ const l=JSON.parse(a); return l.map(n=>({id:n.id,kind:n.kind||(n.cat==='أنشطة'?'activity':'post'),title:n.title,cat:n.cat||'إعلانات',date:n.date,body:n.body||n.content,img:n.img||''})); }
+    const b = localStorage.getItem('nafi_center_news_data'); if(b){ const l=JSON.parse(b); return l.map(n=>({id:n.id,kind:n.kind||'post',title:n.title,cat:'إعلانات',date:n.date,body:n.content,img:n.img||''})); }
+  }catch(e){}
+  return JSON.parse(JSON.stringify(DEF_NEWS));
+}
+function migrateComps(){
+  try{
+    const a = localStorage.getItem('nafi_comps_v1'); if(a){ const l=JSON.parse(a); return l.map(c=>({id:c.id,title:c.title,status:c.status==='past'?'past':(c.status==='soon'?'soon':'current'),date:c.date,prize:c.prize||'',conds:c.conds||(c.desc?[c.desc]:[]),link:c.link||''})); }
+    const b = localStorage.getItem('nafi_center_competitions_data'); if(b){ const l=JSON.parse(b); return l.map(c=>({id:c.id,title:c.title,status:'current',date:'',prize:'',conds:[c.desc],link:c.link||''})); }
+  }catch(e){}
+  return JSON.parse(JSON.stringify(DEF_COMPS));
+}
+function normStatus(s){ if(s==='past'||s==='منتهية') return 'past'; if(s==='soon'||s==='قريباً') return 'soon'; return 'current'; }
+function statusLabel(s){ s=normStatus(s); return s==='past'?'⚪ منتهية':(s==='soon'?'🟡 قريباً':'🟢 متاحة للتسجيل'); }
+
+window.addEventListener('DOMContentLoaded', ()=>{
+  if(location.hash==='#admin'){ openAdminAuthModal(); history.replaceState(null,'','#home'); }
+  applySettings(); populateBirth(); renderTracks(); renderNews(); renderActivities(); renderComps(); renderAnn(); renderMsgs(); renderSubs(); updateOnline();
+  switchTab('home');
+  document.getElementById('admin-pass-input').addEventListener('keydown',e=>{if(e.key==='Enter')verifyAdminPassword();});
+  if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{})); }
+});
+
+function applySettings(){
+  document.getElementById('site-title').textContent=siteSettings.title;
+  document.getElementById('site-subtitle').textContent=siteSettings.subtitle;
+  document.getElementById('contact-phone-text').textContent=siteSettings.phone;
+  document.getElementById('contact-phone-text').href='tel:'+siteSettings.phone.replace(/\D/g,'');
+  const _wl=document.getElementById('contact-wa-link'); if(_wl) _wl.href='https://wa.me/'+siteSettings.phone.replace(/\D/g,'');
+  const _em=document.getElementById('contact-email-text'); if(_em){ _em.textContent=siteSettings.email; _em.href='mailto:'+siteSettings.email; }
+  document.getElementById('contact-address-text').textContent=siteSettings.address;
+  document.getElementById('contact-hours-text').innerHTML=esc(siteSettings.hours).split('|').join('<br>');
+  const logo=document.getElementById('site-logo-img'); if(siteSettings.logoUrl){ logo.style.display=''; logo.src=siteSettings.logoUrl; const lf=document.getElementById('site-logo-fb'); if(lf) lf.style.display='none'; }
+  document.getElementById('hero-slogan').textContent=siteSettings.slogan;
+  document.getElementById('hero-lead').textContent=siteSettings.heroLead;
+  document.getElementById('about-vision').textContent=siteSettings.vision;
+  document.getElementById('about-mission').textContent=siteSettings.mission;
+  renderMenus(); renderStats(); renderContacts(); renderCopyright();
+  renderMenusAdmin(); renderContactsAdmin(); renderStatsAdmin();
+  applyTexts();
+  fillSettingsForm();
+}
+
+function setT(id,txt){ const el=document.getElementById(id); if(el&&txt!=null) el.textContent=txt; }
+const STEP_ICONS=['fa-pen-to-square','fa-clipboard-check','fa-mosque','fa-rotate','fa-medal','fa-scroll'];
+function renderGoals(){ const box=document.getElementById('goals-list'); if(!box) return; box.innerHTML=(siteSettings.goals||[]).map(g=>'<li>'+esc(g)+'</li>').join(''); }
+function renderSteps(){
+  const box=document.getElementById('steps-grid'); if(!box) return;
+  const st=siteSettings.steps||[];
+  box.innerHTML=st.map((s,i)=>{
+    const last=i===st.length-1;
+    return '<div class="bg-white p-6 rounded-2xl '+(last?'border-2 border-gold-500':'border border-slate-200')+' shadow-sm space-y-3 relative overflow-hidden"><span class="absolute top-3 left-4 text-5xl font-black '+(last?'text-gold-500/20':'text-emerald-900/10')+'">'+(i+1)+'</span><div class="w-12 h-12 '+(last?'bg-gold-500':'bg-emerald-900')+' rounded-xl flex items-center justify-center '+(last?'text-emerald-950':'text-gold-300')+' text-xl"><i class="fa-solid '+(STEP_ICONS[i]||'fa-star')+'"></i></div><h3 class="font-bold text-emerald-950">'+esc(s.t)+'</h3><p class="text-slate-600 text-sm leading-relaxed">'+esc(s.d)+'</p></div>';
+  }).join('');
+}
+function applyShow(){
+  const sh=siteSettings.show||{};
+  const map={'wrap-stats':sh.stats,'wrap-announce':sh.announce,'wrap-features':sh.features,'wrap-homenews':sh.homeNews,'cMap':sh.map,'foot-nl':sh.newsletter};
+  Object.keys(map).forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display=(map[id]===false?'none':''); });
+}
+function applyTexts(){
+  setT('hero-title',siteSettings.heroTitle);
+  setT('announce-title',siteSettings.announceT);
+  setT('feat-title',siteSettings.featT);
+  const ft=siteSettings.feat||[];
+  if(ft[0]){ setT('f1t',ft[0].t); setT('f1d',ft[0].d); }
+  if(ft[1]){ setT('f2t',ft[1].t); setT('f2d',ft[1].d); }
+  if(ft[2]){ setT('f3t',ft[2].t); setT('f3d',ft[2].d); }
+  setT('hn-title',siteSettings.homeNewsT); setT('hn-desc',siteSettings.homeNewsD);
+  setT('about-title',siteSettings.aboutT); setT('about-intro1',siteSettings.aboutIntro1); setT('about-intro2',siteSettings.aboutIntro2); setT('nafi-text',siteSettings.nafiText);
+  renderGoals();
+  setT('st-eyebrow',siteSettings.stEyebrow); setT('st-title',siteSettings.stT); setT('st-desc',siteSettings.stD);
+  renderSteps();
+  setT('cta-title',siteSettings.ctaT); setT('cta-desc',siteSettings.ctaD); setT('cta-btn',siteSettings.ctaBtn);
+  setT('news-title',siteSettings.newsT); setT('news-desc',siteSettings.newsD);
+  setT('act-title',siteSettings.actT); setT('act-desc',siteSettings.actD);
+  setT('reg-eyebrow',siteSettings.regEyebrow); setT('reg-title',siteSettings.regT); setT('reg-desc',siteSettings.regD);
+  setT('contact-title',siteSettings.contactT); setT('contact-desc',siteSettings.contactD);
+  setT('foot-desc',siteSettings.footDesc);
+  applyShow();
+}
+/* القوائم + الإحصائيات + الحقوق + عناوين التواصل */
+function renderMenus(){
+  const list=(siteSettings.menus||[]).filter(m=>m.show!==false);
+  const dn=document.getElementById('main-nav');
+  if(dn) dn.innerHTML=list.map(m=>'<button onclick="switchTab(\''+m.id+'\')" class="nav-btn px-3 py-2 rounded-lg text-slate-700 hover:text-emerald-800 hover:bg-emerald-50 transition" data-tab="'+m.id+'">'+esc(m.label)+'</button>').join('');
+  const mb=document.getElementById('mobile-nav');
+  if(mb) mb.innerHTML=list.map(m=>'<button onclick="switchTab(\''+m.id+'\')" class="mobile-nav-btn flex-1 flex flex-col items-center justify-center text-slate-500 text-[9px] font-semibold px-0.5" data-tab="'+m.id+'"><i class="fa-solid '+esc(m.icon||'fa-circle')+' text-base mb-0.5"></i> '+esc(m.label)+'</button>').join('');
+  const dr=document.getElementById('drawer-nav');
+  if(dr) dr.innerHTML=list.map(m=>'<button onclick="switchTab(\''+m.id+'\');toggleDrawer(false)" class="w-full text-right px-4 py-3 rounded-xl hover:bg-emerald-50 flex items-center gap-2"><i class="fa-solid '+esc(m.icon||'fa-circle')+' text-emerald-800 w-5 text-center"></i> '+esc(m.label)+'</button>').join('');
+  const fl=document.getElementById('foot-links');
+  if(fl){ const q=siteSettings.quickLinks||[]; fl.innerHTML=q.map(id=>{ const m=(siteSettings.menus||[]).find(x=>x.id===id); return m?'<button onclick="switchTab(\''+m.id+'\');event.stopPropagation()" class="text-right hover:text-gold-400">'+esc(m.label)+'</button>':''; }).join(''); }
+  paintNav((location.hash||'#home').replace('#','')||'home');
+}
+function renderStats(){
+  const box=document.getElementById('stats-grid'); if(!box) return;
+  const list=siteSettings.statsList||[];
+  if(!list.length){ box.innerHTML=''; return; }
+  box.className='grid gap-3 sm:gap-4 bg-white rounded-2xl shadow-xl p-4 sm:p-6 border border-slate-100 text-center '+(list.length<3?'grid-cols-'+list.length:'grid-cols-2')+(list.length<=1?'':(list.length<=4?' md:grid-cols-'+list.length:' md:grid-cols-4'));
+  box.innerHTML=list.map((s,i)=>'<div class="space-y-1 p-2">'+iconHTML(s.icon,'text-2xl sm:text-3xl '+(i%2?'text-gold-600':'text-emerald-800'),'w-8 h-8 sm:w-9 sm:h-9 mx-auto')+'<h3 class="text-xl sm:text-2xl font-black text-slate-800">'+esc(s.value||'')+(s.plus?'+':'')+'</h3><p class="text-xs text-slate-500 font-bold">'+esc(s.label||'')+'</p></div>').join('');
+}
+function renderCopyright(){ const el=document.getElementById('foot-copy'); if(!el) return; el.textContent=(siteSettings.copyright||'').replace('{year}',new Date().getFullYear()); }
+function renderContacts(){
+  const list=siteSettings.contacts||[];
+  const box=document.getElementById('foot-extra');
+  if(box) box.innerHTML=list.map(c=>'<p class="flex items-center gap-2">'+(c.link?'<a href="'+esc(c.link)+'" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-gold-300">':'<span class="flex items-center gap-2">')+'<i class="fa-solid fa-location-dot text-gold-400 text-[10px]"></i><span><b>'+esc(c.label||'')+(c.label?': ':'')+'</b><span dir="auto">'+esc(c.value||'')+'</span></span>'+(c.link?'</a>':'</span>')+'</p>').join('');
+  const cb=document.getElementById('contact-extra');
+  if(cb) cb.innerHTML=list.map(c=>'<div class="flex items-start gap-4"><div class="w-10 h-10 bg-gold-500/20 rounded-lg flex items-center justify-center text-gold-400 shrink-0"><i class="fa-solid fa-location-dot"></i></div><div><p class="text-slate-300 text-xs">'+esc(c.label||'عنوان إضافي')+'</p>'+(c.link?'<a href="'+esc(c.link)+'" target="_blank" rel="noopener" class="font-semibold hover:text-gold-300" dir="auto">'+esc(c.value||'')+'</a>':'<p class="font-semibold" dir="auto">'+esc(c.value||'')+'</p>')+'</div></div>').join('');
+}
+function renderMenusAdmin(){
+  const box=document.getElementById('menus-admin-list'); if(!box) return;
+  box.innerHTML=(siteSettings.menus||[]).map((m,i)=>'<div class="flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 text-xs flex-wrap"><b class="w-7 h-7 rounded-lg bg-emerald-900 text-gold-300 flex items-center justify-center shrink-0"><i class="fa-solid '+esc(m.icon||'fa-circle')+'"></i></b><input value="'+esc(m.label)+'" onchange="editMenuLabel('+i+',this.value)" class="flex-1 min-w-[110px] px-2 py-1.5 border rounded-lg text-xs font-bold"><label class="flex items-center gap-1 font-bold whitespace-nowrap cursor-pointer"><input type="checkbox" '+(m.show!==false?'checked':'')+' onchange="toggleMenu('+i+',\'show\',this.checked)" class="w-4 h-4 accent-emerald-800"> ظهور</label><label class="flex items-center gap-1 font-bold whitespace-nowrap cursor-pointer"><input type="checkbox" '+((siteSettings.quickLinks||[]).includes(m.id)?'checked':'')+' onchange="toggleMenu('+i+',\'quick\',this.checked)" class="w-4 h-4 accent-emerald-800"> سريعة</label></div>').join('');
+}
+function editMenuLabel(i,v){ v=(v||'').trim(); if(!v) return; siteSettings.menus[i].label=v; save(K.settings,siteSettings); renderMenus(); }
+function toggleMenu(i,which,on){ if(which==='show'){ siteSettings.menus[i].show=on; } else { let q=siteSettings.quickLinks||[]; q=on?[...new Set([...q,siteSettings.menus[i].id])]:q.filter(x=>x!==siteSettings.menus[i].id); siteSettings.quickLinks=q; } save(K.settings,siteSettings); renderMenus(); renderMenusAdmin(); }
+function resetMenus(){ if(!confirm('استعادة القوائم الافتراضية؟'))return; siteSettings.menus=JSON.parse(JSON.stringify(DEF_SETTINGS.menus)); siteSettings.quickLinks=JSON.parse(JSON.stringify(DEF_SETTINGS.quickLinks)); save(K.settings,siteSettings); applySettings(); }
+function renderContactsAdmin(){
+  const box=document.getElementById('contacts-admin-list'); if(!box) return;
+  box.innerHTML=(siteSettings.contacts||[]).map((c,i)=>'<div class="bg-slate-50 p-3 rounded-xl border text-xs space-y-1"><div class="flex justify-between items-center gap-2"><b>'+esc(c.label||'بدون عنوان')+'</b><button onclick="delContact('+i+')" class="px-2.5 py-1 bg-red-100 text-red-700 rounded font-bold">حذف</button></div><div class="text-slate-500 break-all" dir="auto">'+esc(c.value||'')+'</div>'+(c.link?'<div class="text-slate-400 break-all" dir="ltr">'+esc(c.link)+'</div>':'')+'</div>').join('')||'<p class="text-slate-400 text-xs">لا توجد عناوين إضافية بعد.</p>';
+}
+function addContact(){
+  const l=document.getElementById('ct-label').value.trim(), v=document.getElementById('ct-value').value.trim(), k=document.getElementById('ct-link').value.trim();
+  if(!l||!v){ showToast('أدخل العنوان والقيمة'); return; }
+  siteSettings.contacts.push({label:l,value:v,link:k});
+  save(K.settings,siteSettings);
+  document.getElementById('ct-label').value='';document.getElementById('ct-value').value='';document.getElementById('ct-link').value='';
+  renderContacts(); renderContactsAdmin(); showToast('تمت إضافة العنوان');
+}
+function delContact(i){ siteSettings.contacts.splice(i,1); save(K.settings,siteSettings); renderContacts(); renderContactsAdmin(); }
+function isImgIcon(v){ v=v||''; return /^(data:|https?:|blob:)/i.test(v)||/\.(png|jpe?g|svg|gif|webp)(\?|$)/i.test(v); }
+function iconHTML(icon,fontCls,imgCls){
+  icon=(icon||'fa-star').trim()||'fa-star';
+  if(isImgIcon(icon)) return '<img src="'+esc(icon)+'" class="'+imgCls+' object-contain" alt="" loading="lazy" onerror="this.remove()">';
+  return '<i class="fa-solid '+esc(icon)+' '+fontCls+'"></i>';
+}
+function updateIconPrev(){
+  const v=(document.getElementById('st-icon').value||'').trim();
+  const img=document.getElementById('st-icon-prev'), fa=document.getElementById('st-icon-fa');
+  const isImg=isImgIcon(v);
+  img.classList.toggle('hidden',!isImg); fa.classList.toggle('hidden',isImg);
+  if(isImg) img.src=v; else fa.className='fa-solid '+(v||'fa-star');
+}
+function handleIconFile(inp){
+  const f=inp.files[0]; if(!f) return;
+  if(f.size>2*1024*1024){ showToast('الصورة كبيرة — اختر صورة أصغر من 2MB'); inp.value=''; return; }
+  const r=new FileReader();
+  r.onload=function(){
+    const img=new Image();
+    img.onload=function(){
+      const max=96; let w=img.width,h=img.height;
+      const sc=Math.min(1,max/Math.max(w,h)); w=Math.max(1,Math.round(w*sc)); h=Math.max(1,Math.round(h*sc));
+      const c=document.createElement('canvas'); c.width=w; c.height=h;
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      try{
+        const url=c.toDataURL('image/png');
+        document.getElementById('st-icon').value=url; updateIconPrev(); showToast('تم تجهيز أيقونتك الخاصة');
+      }catch(e){ showToast('تعذر معالجة الصورة'); }
+    };
+    img.onerror=function(){ showToast('ملف غير صالح'); };
+    img.src=r.result;
+  };
+  r.readAsDataURL(f); inp.value='';
+}
+const STAT_ICONS=['fa-graduation-cap','fa-scroll','fa-mosque','fa-book-open-reader','fa-users','fa-award','fa-kaaba','fa-star','fa-book-quran','fa-medal','fa-certificate','fa-people-group'];
+function renderStatsAdmin(){
+  const box=document.getElementById('stats-admin-list'); if(!box) return;
+  box.innerHTML=(siteSettings.statsList||[]).map(s=>'<div class="bg-slate-50 p-3 rounded-xl border flex justify-between items-center text-xs gap-2"><div class="flex items-center gap-2 min-w-0"><b class="w-8 h-8 rounded-lg bg-emerald-900 text-gold-300 flex items-center justify-center overflow-hidden shrink-0">'+iconHTML(s.icon,'text-sm','w-6 h-6')+'</b><div class="min-w-0"><b>'+esc(s.value||'')+(s.plus?'+':'')+'</b><div class="text-slate-500 truncate">'+esc(s.label||'')+'</div></div></div><div class="flex gap-1 shrink-0"><button onclick="editStat(\''+s.id+'\')" class="px-2.5 py-1 bg-blue-100 text-blue-700 rounded font-bold">تعديل</button><button onclick="delStat(\''+s.id+'\')" class="px-2.5 py-1 bg-red-100 text-red-700 rounded font-bold">حذف</button></div></div>').join('')||'<p class="text-slate-400 text-xs">لا توجد إحصائيات — أضف من الأعلى.</p>';
+}
+function saveStat(){
+  const id=document.getElementById('st-id').value;
+  const icon=document.getElementById('st-icon').value, value=document.getElementById('st-value').value.trim(), label=document.getElementById('st-label').value.trim(), plus=document.getElementById('st-plus').checked;
+  if(!value||!label){ showToast('أدخل الرقم والتسمية'); return; }
+  if(id){ const i=siteSettings.statsList.findIndex(x=>x.id===id); if(i>-1) siteSettings.statsList[i]={id,icon,value,label,plus}; }
+  else siteSettings.statsList.push({id:'s'+Date.now(),icon,value,label,plus});
+  save(K.settings,siteSettings); clearStatForm(); renderStats(); renderStatsAdmin(); showToast('تم حفظ الإحصائية');
+}
+function editStat(id){ const s=(siteSettings.statsList||[]).find(x=>x.id===id); if(!s) return; document.getElementById('st-id').value=s.id; document.getElementById('st-icon').value=s.icon||'fa-star'; document.getElementById('st-value').value=s.value||''; document.getElementById('st-label').value=s.label||''; document.getElementById('st-plus').checked=!!s.plus; updateIconPrev(); }
+function delStat(id){ if(!confirm('حذف هذه الإحصائية؟'))return; siteSettings.statsList=siteSettings.statsList.filter(x=>x.id!==id); save(K.settings,siteSettings); renderStats(); renderStatsAdmin(); }
+function clearStatForm(){ document.getElementById('st-id').value='';document.getElementById('st-icon').value='fa-star';document.getElementById('st-value').value='';document.getElementById('st-label').value='';document.getElementById('st-plus').checked=true; updateIconPrev(); }
+function getPath(o,p){ return p.split('.').reduce((a,k)=>(a==null?a:a[k]),o); }
+function setPath(o,p,v){ const ks=p.split('.'); let t=o; for(let i=0;i<ks.length-1;i++){ const k=ks[i]; if(t[k]==null||typeof t[k]!=='object') t[k]={}; t=t[k]; } t[ks[ks.length-1]]=v; }
+function fillSettingsForm(){ document.querySelectorAll('#admin-subtab-settings [data-set]').forEach(el=>{ const v=getPath(siteSettings,el.dataset.set); if(el.type==='checkbox') el.checked=!!v; else if('value' in el) el.value=(v==null?'':v); }); }
+function collectSettingsForm(){ document.querySelectorAll('#admin-subtab-settings [data-set]').forEach(el=>{ if(el.type==='checkbox') setPath(siteSettings,el.dataset.set,el.checked); else setPath(siteSettings,el.dataset.set,el.value.trim()); }); }
+
+function paintNav(id){
+  document.querySelectorAll('.nav-btn').forEach(b=>{ const on=b.dataset.tab===id; b.classList.toggle('text-emerald-900',on); b.classList.toggle('bg-emerald-50',on); });
+  document.querySelectorAll('.mobile-nav-btn').forEach(b=>{ const on=b.dataset.tab===id; b.classList.toggle('text-emerald-900',on); b.classList.toggle('text-slate-500',!on); });
+}
+function switchTab(id){
+  toggleDrawer(false);
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.add('hidden'));
+  const el=document.getElementById('tab-'+id); if(el) el.classList.remove('hidden');
+  paintNav(id);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function switchAdminSubTab(id){
+  document.querySelectorAll('.admin-subtab').forEach(e=>e.classList.add('hidden'));
+  document.getElementById('admin-subtab-'+id).classList.remove('hidden');
+  document.querySelectorAll('.admin-sub-btn').forEach(b=>{ const on=b.dataset.subtab===id; b.classList.toggle('border-emerald-800',on); b.classList.toggle('text-emerald-800',on); b.classList.toggle('border-transparent',!on); b.classList.toggle('text-slate-500',!on); });
+}
+
+function renderTracks(){
+  const sel=document.getElementById('reg-track'); if(!sel) return;
+  const base=['حلقة حفظ','حلقة تجويد','إقراء وسند','القراءات العشر','براعم القرآن'];
+  const comps=compList.filter(c=>normStatus(c.status)!=='past').map(c=>'مسابقة: '+c.title);
+  const all=base.concat(comps.length?comps:['مسابقة قرآنية']);
+  const cur=sel.value;
+  sel.innerHTML=all.map(t=>'<option'+(t===cur?' selected':'')+'>'+esc(t)+'</option>').join('');
+}
+function selectTrack(t){ const s=document.getElementById('reg-track'); if(s){ renderTracks(); s.value=t; } const f=document.getElementById('reg-form'); if(f) f.scrollIntoView({behavior:'smooth',block:'center'}); }
+
+function setNewsCat(c){ newsCat=c; renderNews(); }
+function renderNews(){
+  const q=(document.getElementById('news-search-input').value||'').trim();
+  const cats=['الكل','إعلانات','فوائد قرآنية','إجازات'];
+  document.getElementById('news-cats').innerHTML=cats.map(c=>'<button onclick="setNewsCat(\''+c+'\')" class="px-4 py-1.5 rounded-full text-xs font-bold border '+(newsCat===c?'bg-emerald-900 text-gold-300 border-emerald-900':'bg-white text-slate-600')+'">'+c+'</button>').join('');
+  let list=newsList.filter(n=>(n.kind||'post')==='post').sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  if(newsCat!=='الكل') list=list.filter(n=>(n.cat||'إعلانات')===newsCat);
+  if(q) list=list.filter(n=>((n.title||'')+(n.body||'')).includes(q));
+  const grid=document.getElementById('news-grid');
+  grid.innerHTML=list.map(n=>'<div class="bg-white rounded-2xl border overflow-hidden shadow-sm flex flex-col">'
+    +(n.img?'<img src="'+esc(n.img)+'" class="w-full h-44 object-cover" loading="lazy" style="cursor:zoom-in" onclick="openLightbox(this.src)" onerror="this.remove()">':'<div class="w-full h-28 bg-emerald-900/10 flex items-center justify-center text-emerald-800"><i class="fa-solid fa-newspaper text-3xl"></i></div>')
+    +'<div class="p-5 space-y-2 flex-1"><span class="text-[11px] bg-gold-100 text-gold-700 font-bold px-2 py-0.5 rounded-full">'+esc(n.cat||'إعلانات')+'</span> <span class="text-[11px] text-slate-400">📅 '+esc(n.date||'')+'</span><h3 class="font-bold text-slate-800">'+esc(n.title)+'</h3><p class="text-slate-600 text-xs leading-relaxed line-clamp-3">'+esc(n.body)+'</p></div></div>').join('')||'<p class="col-span-full text-center text-slate-400 py-8">لا توجد نتائج</p>';
+  document.getElementById('home-news-grid').innerHTML=newsList.slice(0,3).map(n=>'<div class="bg-white rounded-2xl p-5 border shadow-sm space-y-2"><span class="text-[11px] text-gold-700 font-bold"><i class="fa-solid fa-bullhorn ml-1"></i> نشاط قرآني</span><h4 class="font-bold text-slate-800">'+esc(n.title)+'</h4><p class="text-slate-600 text-xs line-clamp-2">'+esc(n.body)+'</p><button onclick="switchTab(\'news\')" class="text-xs font-bold text-emerald-800 pt-2">اقرأ المزيد...</button></div>').join('');
+  document.getElementById('admin-news-list').innerHTML=newsList.map(n=>'<div class="bg-slate-50 p-4 rounded-xl border flex justify-between items-center text-xs gap-2"><div><p class="font-bold">'+((n.kind||'post')==='activity'?'📌 ':'📰 ')+esc(n.title)+'</p><p class="text-slate-500">'+esc(n.cat||'')+' • '+esc(n.date||'')+'</p></div><div class="flex gap-2"><button onclick="editNews(\''+n.id+'\')" class="px-2.5 py-1 bg-blue-100 text-blue-700 rounded font-bold">تعديل</button><button onclick="deleteNews(\''+n.id+'\')" class="px-2.5 py-1 bg-red-100 text-red-700 rounded font-bold">حذف</button></div></div>').join('');
+}
+
+function renderActivities(){
+  const inp=document.getElementById('act-search-input');
+  const q=inp?(inp.value||'').trim():'';
+  let list=newsList.filter(n=>(n.kind||'post')==='activity').sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  if(q) list=list.filter(n=>((n.title||'')+(n.body||'')).includes(q));
+  document.getElementById('act-grid').innerHTML=list.map(n=>'<div class="bg-white rounded-2xl border overflow-hidden shadow-sm flex flex-col">'
+    +(n.img?'<img src="'+esc(n.img)+'" class="w-full h-44 object-cover" loading="lazy" style="cursor:zoom-in" onclick="openLightbox(this.src)" onerror="this.remove()">':'<div class="w-full h-28 bg-gold-100 flex items-center justify-center text-gold-700"><i class="fa-solid fa-kaaba text-3xl"></i></div>')
+    +'<div class="p-5 space-y-2 flex-1"><span class="text-[11px] text-slate-400">📅 '+esc(n.date||'')+'</span><h3 class="font-bold text-slate-800">'+esc(n.title)+'</h3><p class="text-slate-600 text-xs leading-relaxed">'+esc(n.body)+'</p></div></div>').join('')||'<p class="col-span-full text-center text-slate-400 py-8">لا توجد أنشطة حالياً</p>';
+}
+
+function renderComps(){
+  document.getElementById('admin-comp-list').innerHTML=compList.map(c=>'<div class="bg-slate-50 p-4 rounded-xl border flex justify-between items-center text-xs gap-2"><div><p class="font-bold">'+esc(c.title)+'</p><span class="text-gold-700 font-bold">'+statusLabel(c.status)+'</span></div><div class="flex gap-2"><button onclick="editCompetition(\''+c.id+'\')" class="px-2.5 py-1 bg-blue-100 text-blue-700 rounded font-bold">تعديل</button><button onclick="deleteCompetition(\''+c.id+'\')" class="px-2.5 py-1 bg-red-100 text-red-700 rounded font-bold">حذف</button></div></div>').join('');
+  renderTracks();
+}
+
+const AR_MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+function populateBirth(){
+  const d=document.getElementById('rg-day'),m=document.getElementById('rg-month'),y=document.getElementById('rg-year');
+  if(!d||!m||!y||d.options.length>1) return;
+  for(let i=1;i<=31;i++) d.add(new Option(i,i));
+  for(let j=0;j<12;j++) m.add(new Option(AR_MONTHS[j],j+1));
+  const cy=new Date().getFullYear();
+  for(let k=cy;k>=1950;k--) y.add(new Option(k,k));
+}
+function getBirth(){
+  const d=document.getElementById('rg-day').value,m=document.getElementById('rg-month').value,y=document.getElementById('rg-year').value;
+  if(!d||!m||!y) return null;
+  const dt=new Date(+y,+m-1,+d);
+  if(dt.getFullYear()!==+y||dt.getMonth()!==+m-1||dt.getDate()!==+d) return {invalid:true};
+  return {d:+d,m:+m,y:+y};
+}
+function calcAge(){
+  const b=getBirth(), el=document.getElementById('rg-age-val');
+  if(!b){ if(el) el.textContent='—'; return null; }
+  if(b.invalid){ if(el) el.textContent='تاريخ غير صحيح'; return {invalid:true}; }
+  const now=new Date(); let age=now.getFullYear()-b.y;
+  if(now.getMonth()+1<b.m||(now.getMonth()+1===b.m&&now.getDate()<b.d)) age--;
+  if(el) el.textContent=age+' سنة';
+  return {d:b.d,m:b.m,y:b.y,age:age};
+}
+function toggleWaField(){ const same=document.getElementById('rg-same-wa').checked; document.getElementById('rg-wa-wrap').style.display=same?'none':'block'; }
+function submitRegister(via){
+  const gv=id=>document.getElementById(id).value.trim();
+  const name=gv('rg-name'), home=gv('rg-home'), mob=gv('rg-mobile');
+  const same=document.getElementById('rg-same-wa').checked;
+  const waa=same?mob:gv('rg-whatsapp');
+  const level=document.getElementById('rg-level').value, notes=gv('rg-notes');
+  const b=calcAge();
+  if(!name||!home||!mob){ showToast('فضلاً أكمل: الاسم الرباعي والسكن ورقم الجوال'); return; }
+  if(!b){ showToast('فضلاً اختر تاريخ الميلاد كاملاً (يوم - شهر - سنة)'); return; }
+  if(b.invalid){ showToast('تاريخ الميلاد غير صحيح'); return; }
+  if(!same&&!waa){ showToast('أدخل رقم الواتساب أو فعّل "واتساب بنفس الرقم"'); return; }
+  const now=new Date(), p2=n=>String(n).padStart(2,'0');
+  const ts=now.getFullYear()+'-'+p2(now.getMonth()+1)+'-'+p2(now.getDate())+' الساعة '+p2(now.getHours())+':'+p2(now.getMinutes());
+  const birth=b.d+'/'+b.m+'/'+b.y;
+  const lines=['طلب تسجيل جديد — مركز الإمام نافع','———————————','الاسم الرباعي: '+name,'تاريخ الميلاد: '+birth,'العمر: '+b.age+' سنة','السكن: '+home,'رقم الجوال: '+mob,'رقم الواتساب: '+waa,'المستوى: '+level,'ملاحظات: '+(notes||'-'),'———————————','وقت التسجيل: '+ts];
+  inbox.unshift({id:'m'+Date.now(),name:name,phone:mob+' / واتساب: '+waa,type:'تسجيل طالب جديد',msg:'الميلاد: '+birth+' ('+b.age+' سنة) | السكن: '+home+' | المستوى: '+level+' | ملاحظات: '+(notes||'-'),date:ts});
+  save(K.msgs,inbox); renderMsgs();
+  if(via==='mail'){ window.location.href='mailto:'+siteSettings.email+'?subject='+encodeURIComponent('تسجيل طالب جديد - '+name)+'&body='+encodeURIComponent(lines.join('\n')); showToast('تم تجهيز البريد لإرسال تسجيلك'); }
+  else{ window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(lines.join('\n')),'_blank'); showToast('تم فتح واتساب لإرسال تسجيلك'); }
+  document.getElementById('reg-form').reset(); toggleWaField(); calcAge(); renderTracks();
+}
+
+function renderAnn(){
+  const g=document.getElementById('announce-grid'); if(!g) return;
+  g.innerHTML=annList.map(a=>'<div class="bg-white border-r-4 border-gold-500 rounded-2xl p-5 shadow-sm"><b class="text-emerald-950">📢 '+esc(a.title)+'</b><p class="text-slate-500 text-sm mt-1">'+esc(a.desc||'')+'</p></div>').join('')||'<p class="text-slate-400 text-sm">لا توجد إعلانات حالياً.</p>';
+  const al=document.getElementById('admin-announce-list'); if(al) al.innerHTML=annList.map((a,i)=>'<div class="bg-slate-50 p-3 rounded-xl border flex justify-between items-center text-xs"><div><b>'+esc(a.title)+'</b><div class="text-slate-500">'+esc(a.desc||'')+'</div></div><button onclick="delAnn('+i+')" class="px-2.5 py-1 bg-red-100 text-red-700 rounded font-bold">حذف</button></div>').join('');
+}
+function addAnnounce(){ const t=document.getElementById('ann-title').value.trim(),d=document.getElementById('ann-desc').value.trim(); if(!t){showToast('أدخل عنوان الإعلان');return;} if(annList.some(a=>(a.title||'').trim()===t)){showToast('هذا الإعلان موجود مسبقاً');return;} annList.unshift({title:t,desc:d}); save(K.ann,annList); document.getElementById('ann-title').value='';document.getElementById('ann-desc').value=''; renderAnn(); showToast('تمت إضافة الإعلان'); }
+function delAnn(i){ annList.splice(i,1); save(K.ann,annList); renderAnn(); }
+
+function sendInquiry(via){
+  const name=document.getElementById('c-name').value.trim(), phone=document.getElementById('c-phone').value.trim(), msg=document.getElementById('c-msg').value.trim();
+  if(!name||!phone){showToast('أدخل الاسم والهاتف');return;}
+  inbox.unshift({id:'m'+Date.now(),name,phone,type:'استفسار',msg,date:new Date().toISOString().slice(0,10)});
+  save(K.msgs,inbox); renderMsgs();
+  if(via==='mail'){ window.location.href='mailto:'+siteSettings.email+'?subject='+encodeURIComponent('استفسار - '+name)+'&body='+encodeURIComponent('الاسم: '+name+'\nالهاتف: '+phone+'\nالرسالة: '+msg); showToast('تم تجهيز البريد لإرسال استفسارك'); }
+  else{ const text='السلام عليكم، استفسار من موقع المركز:%0aالاسم: '+encodeURIComponent(name)+'%0aالهاتف: '+encodeURIComponent(phone)+'%0aالرسالة: '+encodeURIComponent(msg); window.open('https://wa.me/'+WA_NUM+'?text='+text,'_blank'); showToast('تم فتح واتساب لإرسال استفسارك'); }
+  document.getElementById('c-name').value='';document.getElementById('c-phone').value='';document.getElementById('c-msg').value='';
+}
+
+/* النشرة البريدية */
+function subscribeNews(){
+  const inp=document.getElementById('nl-email-foot'); const em=(inp.value||'').trim().toLowerCase();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ showToast('أدخل بريداً صحيحاً'); return; }
+  if(subs.some(s=>s.email.toLowerCase()===em)){ showToast('هذا البريد مشترك مسبقاً'); inp.value=''; return; }
+  subs.unshift({id:'s'+Date.now(),email:em,date:new Date().toISOString().slice(0,10)});
+  save(K.subs,subs); renderSubs(); inp.value=''; showToast('تم الاشتراك في النشرة البريدية');
+}
+function renderSubs(){
+  const box=document.getElementById('subs-list');
+  const c1=document.getElementById('subs-count'), c2=document.getElementById('subs-count2');
+  if(c1) c1.textContent=subs.length?'('+subs.length+')':'';
+  if(c2) c2.textContent=subs.length;
+  if(!box) return;
+  box.innerHTML=subs.map(s=>'<div class="bg-slate-50 p-3 rounded-xl border flex justify-between items-center text-xs gap-2"><div class="min-w-0"><b dir="ltr" class="break-all">'+esc(s.email)+'</b> <span class="text-slate-400">'+esc(s.date||'')+'</span></div><button onclick="delSub(\''+s.id+'\')" class="px-2.5 py-1 bg-red-100 text-red-700 rounded font-bold shrink-0">حذف</button></div>').join('')||'<p class="text-slate-400 text-sm">لا يوجد مشتركون بعد.</p>';
+}
+function delSub(id){ subs=subs.filter(x=>x.id!==id); save(K.subs,subs); renderSubs(); }
+function clearSubs(){ if(!confirm('مسح جميع المشتركين؟'))return; subs=[]; save(K.subs,subs); renderSubs(); }
+function exportSubs(){ if(!subs.length){ showToast('لا يوجد مشتركون'); return; } const blob=new Blob([subs.map(s=>s.email).join('\n')],{type:'text/plain'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='subscribers.txt'; a.click(); }
+function sendNewsletter(){
+  if(!subs.length){ showToast('لا يوجد مشتركون بعد'); return; }
+  const sub=document.getElementById('nl-subject').value.trim()||'نشرة مركز الإمام نافع';
+  const body=document.getElementById('nl-body').value.trim();
+  if(!body){ showToast('اكتب نص النشرة أولاً'); return; }
+  window.location.href='mailto:?bcc='+encodeURIComponent(subs.map(s=>s.email).join(','))+'&subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(body);
+  showToast('تم تجهيز الرسالة في بريدك للإرسال للجميع');
+}
+function renderMsgs(){
+  const box=document.getElementById('msgs-list'); if(!box) return;
+  document.getElementById('msgs-count').textContent=inbox.length?'('+inbox.length+')':'';
+  const qbox=document.getElementById('msgs-search');
+  const mq=qbox?(qbox.value||'').trim():'';
+  const mlist=mq?inbox.filter(m=>((m.name||'')+(m.phone||'')).includes(mq)):inbox;
+  box.innerHTML=mlist.map(m=>'<div class="bg-slate-50 p-4 rounded-xl border text-xs flex justify-between gap-2"><div><b>'+esc(m.name)+'</b> <span dir="ltr">'+esc(m.phone)+'</span><div class="text-slate-500">'+esc(m.type)+' • '+esc(m.date||'')+'</div><div>'+esc(m.msg||'')+'</div></div><div class="flex flex-col gap-1"><a target="_blank" href="https://wa.me/'+encodeURIComponent(String(m.phone).replace(/\D/g,''))+'" class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded font-bold text-center">واتساب</a><button onclick="delMsg(\''+m.id+'\')" class="px-2.5 py-1 bg-red-100 text-red-700 rounded font-bold">حذف</button></div></div>').join('')||'<p class="text-slate-400 text-sm">لا توجد نتائج مطابقة.</p>';
+}
+function exportMsgs(){
+  if(!inbox.length){ showToast('لا توجد طلبات لتصديرها'); return; }
+  const rows=[['الاسم','الهاتف','النوع','التفاصيل','التاريخ']];
+  inbox.forEach(m=>rows.push([m.name||'',m.phone||'',m.type||'',String(m.msg||'').replace(/\s+/g,' ').trim(),m.date||'']));
+  const csv='\ufeff'+rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='talabat-markaz-nafi.csv'; a.click();
+  showToast('تم تنزيل ملف الطلبات');
+}
+function delMsg(id){ inbox=inbox.filter(x=>x.id!==id); save(K.msgs,inbox); renderMsgs(); }
+function clearMsgs(){ if(!confirm('مسح جميع الطلبات؟'))return; inbox=[]; save(K.msgs,inbox); renderMsgs(); }
+
+/* إدارة */
+function handleSaveNews(e){ e.preventDefault();
+  const id=document.getElementById('news-edit-id').value, title=document.getElementById('news-title-input').value.trim(), kind=document.getElementById('news-kind-input').value, cat=document.getElementById('news-cat-input').value, img=document.getElementById('news-img-input').value.trim(), body=document.getElementById('news-content-input').value.trim();
+  if(!title||!body){showToast('أكمل الحقول');return;}
+  if(id){ const i=newsList.findIndex(n=>n.id===id); if(i>-1) newsList[i]={...newsList[i],title,kind,cat,img,body}; }
+  else newsList.unshift({id:'n'+Date.now(),title,kind,cat,img,body,date:new Date().toISOString().slice(0,10)});
+  save(K.news,newsList); resetNewsForm(); renderNews(); renderActivities(); showToast('تم حفظ '+(kind==='activity'?'النشاط':'المنشور'));
+}
+function editNews(id){ const n=newsList.find(x=>x.id===id); if(!n)return; document.getElementById('news-edit-id').value=n.id; document.getElementById('news-title-input').value=n.title; document.getElementById('news-kind-input').value=n.kind||'post'; document.getElementById('news-cat-input').value=n.cat||'إعلانات'; document.getElementById('news-img-input').value=n.img||''; document.getElementById('news-content-input').value=n.body; switchAdminSubTab('add-news'); window.scrollTo({top:0,behavior:'smooth'}); }
+function deleteNews(id){ if(!confirm('حذف؟'))return; newsList=newsList.filter(n=>n.id!==id); save(K.news,newsList); renderNews(); renderActivities(); }
+function resetNewsForm(){ document.getElementById('news-edit-id').value='';document.getElementById('news-title-input').value='';document.getElementById('news-kind-input').value='post';document.getElementById('news-img-input').value='';document.getElementById('news-content-input').value=''; }
+
+function handleSaveCompetition(e){ e.preventDefault();
+  const id=document.getElementById('comp-edit-id').value, title=document.getElementById('comp-title-input').value.trim(), status=document.getElementById('comp-status-input').value, date=document.getElementById('comp-date-input').value.trim(), prize=document.getElementById('comp-prize-input').value.trim(), conds=document.getElementById('comp-desc-input').value.split('\n').map(s=>s.trim()).filter(Boolean), link=document.getElementById('comp-link-input').value.trim();
+  if(!title){showToast('أدخل اسم المسابقة');return;}
+  if(id){ const i=compList.findIndex(c=>c.id===id); if(i>-1) compList[i]={...compList[i],title,status,date,prize,conds,link}; }
+  else compList.unshift({id:'c'+Date.now(),title,status,date,prize,conds,link});
+  save(K.comps,compList); resetCompForm(); renderComps(); showToast('تم حفظ المسابقة');
+}
+function editCompetition(id){ const c=compList.find(x=>x.id===id); if(!c)return; document.getElementById('comp-edit-id').value=c.id; document.getElementById('comp-title-input').value=c.title; document.getElementById('comp-status-input').value=normStatus(c.status); document.getElementById('comp-date-input').value=c.date||''; document.getElementById('comp-prize-input').value=c.prize||''; document.getElementById('comp-desc-input').value=(c.conds||[]).join('\n'); document.getElementById('comp-link-input').value=c.link||''; switchAdminSubTab('add-comp'); }
+function deleteCompetition(id){ if(!confirm('حذف المسابقة؟'))return; compList=compList.filter(c=>c.id!==id); save(K.comps,compList); renderComps(); }
+function resetCompForm(){ document.getElementById('comp-edit-id').value='';document.getElementById('comp-title-input').value='';document.getElementById('comp-desc-input').value='';document.getElementById('comp-link-input').value='';document.getElementById('comp-date-input').value='';document.getElementById('comp-prize-input').value=''; }
+
+function handleSaveSettings(e){ e.preventDefault();
+  collectSettingsForm();
+  if(!siteSettings.title) siteSettings.title=DEF_SETTINGS.title;
+  if(!siteSettings.logoUrl) siteSettings.logoUrl='logo.png';
+  if(!siteSettings.email) siteSettings.email=MAIL;
+  const np=document.getElementById('set-pass').value.trim(); if(np.length>=4) siteSettings.adminPass=np;
+  document.getElementById('set-pass').value='';
+  save(K.settings,siteSettings); applySettings(); showToast('تم حفظ إعدادات الموقع');
+}
+function exportData(){ const blob=new Blob([JSON.stringify({siteSettings,newsList,compList,annList,inbox,subs},null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='nafi-backup.json'; a.click(); }
+function importData(inp){ const f=inp.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{ try{ const d=JSON.parse(r.result); if(d.siteSettings)siteSettings=d.siteSettings; if(d.newsList)newsList=d.newsList; if(d.compList)compList=d.compList; if(d.annList)annList=d.annList; if(d.inbox)inbox=d.inbox; if(d.subs)subs=d.subs; save(K.settings,siteSettings);save(K.news,newsList);save(K.comps,compList);save(K.ann,annList);save(K.msgs,inbox);save(K.subs,subs); applySettings();renderNews();renderActivities();renderComps();renderAnn();renderMsgs();renderSubs(); showToast('تم الاستيراد'); }catch(e){ showToast('ملف غير صالح'); } }; r.readAsText(f); inp.value=''; }
+function resetAll(){ if(!confirm('استعادة الافتراضي؟'))return; siteSettings=JSON.parse(JSON.stringify(DEF_SETTINGS)); newsList=JSON.parse(JSON.stringify(DEF_NEWS)); compList=JSON.parse(JSON.stringify(DEF_COMPS)); annList=JSON.parse(JSON.stringify(DEF_ANN)); inbox=[]; save(K.settings,siteSettings);save(K.news,newsList);save(K.comps,compList);save(K.ann,annList);save(K.msgs,inbox); applySettings();renderNews();renderActivities();renderComps();renderAnn();renderMsgs();renderSubs(); }
+
+/* دخول سري مخفي عن الزوار */
+let taps=0,timer=null;
+function secretTap(){ taps++; clearTimeout(timer); timer=setTimeout(()=>taps=0,2000); if(taps>=5){ taps=0; openAdminAuthModal(); } }
+function openAdminAuthModal(){ if(isAdmin){ switchTab('admin'); return; } document.getElementById('admin-auth-modal').classList.remove('hidden'); setTimeout(()=>document.getElementById('admin-pass-input').focus(),50); }
+function closeAdminAuthModal(){ document.getElementById('admin-auth-modal').classList.add('hidden'); document.getElementById('admin-auth-error').classList.add('hidden'); document.getElementById('admin-pass-input').value=''; }
+function verifyAdminPassword(){ const p=document.getElementById('admin-pass-input').value;
+  if(p===siteSettings.adminPass){ isAdmin=true; sessionStorage.setItem('nafi_admin','1'); closeAdminAuthModal(); switchTab('admin'); showToast('مرحباً بك في لوحة الإدارة'); }
+  else document.getElementById('admin-auth-error').classList.remove('hidden'); }
+function logoutAdmin(){ isAdmin=false; sessionStorage.removeItem('nafi_admin'); switchTab('home'); showToast('تم الخروج'); }
+
+/* القائمة الجانبية + الشعار + العارض + الاتصال */
+function toggleDrawer(force){ var d=document.getElementById('drawer'),o=document.getElementById('drawer-overlay'); if(!d||!o) return; var will=(force===true)||(force!==false&&d.classList.contains('translate-x-full')); d.classList.toggle('translate-x-full',!will); o.classList.toggle('hidden',!will); document.body.style.overflow=will?'hidden':''; }
+function logoFallback(el){ el.style.display='none'; var f=document.getElementById('site-logo-fb'); if(f) f.style.display='flex'; }
+var _heroTried=false;
+function heroLogoFallback(el){ if(!_heroTried){ _heroTried=true; el.src=(typeof siteSettings!=='undefined'&&siteSettings.logoUrl)||'logo.png'; } else { el.style.display='none'; var f=document.getElementById('hero-logo-fb'); if(f) f.style.display='flex'; } }
+function openLightbox(src){ var l=document.getElementById('lightbox'); if(!l||!src) return; document.getElementById('lightbox-img').src=src; l.classList.remove('hidden'); l.classList.add('flex'); document.body.style.overflow='hidden'; }
+function closeLightbox(){ var l=document.getElementById('lightbox'); if(!l||l.classList.contains('hidden')) return; l.classList.add('hidden'); l.classList.remove('flex'); document.getElementById('lightbox-img').src=''; document.body.style.overflow=''; }
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeLightbox(); toggleDrawer(false); } });
+function updateOnline(){ var b=document.getElementById('offline-bar'); if(!b) return; var off=!navigator.onLine; b.classList.toggle('hidden',!off); b.classList.toggle('flex',off); }
+window.addEventListener('online',function(){ updateOnline(); showToast('عاد الاتصال بالإنترنت'); });
+window.addEventListener('offline',updateOnline);
+
+/* PWA */
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; document.getElementById('install-banner').classList.remove('hidden'); const b=document.getElementById('install-top-btn'); if(b){b.classList.remove('hidden');b.classList.add('flex');} });
+function promptInstall(){ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{deferredPrompt=null;hideInstall();}); } else alert('من المتصفح: القائمة ⋮ ثم تثبيت التطبيق / إضافة للشاشة الرئيسية'); }
+function hideInstall(){ document.getElementById('install-banner').classList.add('hidden'); }
+function showToast(m){ const t=document.getElementById('toast-msg'); document.getElementById('toast-text').textContent=m; t.classList.remove('hidden'); t.classList.add('flex'); setTimeout(()=>{t.classList.add('hidden');t.classList.remove('flex');},3000); }
+</script>
+</body>
+</html>

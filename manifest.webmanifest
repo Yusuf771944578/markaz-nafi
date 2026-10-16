@@ -1,0 +1,19 @@
+{
+  "name": "مركز الإمام نافع لتعليم القرآن الكريم وتلقي القراءات",
+  "short_name": "الإمام نافع",
+  "description": "التسجيل في حلقات الحفظ والتجويد والإقراء بالسند، رحلة الطالب، المنشورات والأنشطة",
+  "lang": "ar",
+  "dir": "rtl",
+  "id": ".",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8fafc",
+  "theme_color": "#022c22",
+  "categories": ["education", "religion"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
