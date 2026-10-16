@@ -13,6 +13,7 @@
 <link rel="icon" type="image/png" href="logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>try{document.documentElement.classList.add((localStorage.getItem('nafi_theme')||'night')==='day'?'day':'night');}catch(e){document.documentElement.classList.add('night');}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -25,6 +26,42 @@ tailwind.config = { theme: { extend: {
 <style>
 body{font-family:'Cairo',sans-serif;background-color:#f8fafc}
 .quran-font{font-family:'Amiri',serif}
+.hero-light{background-color:#faf6ec;background-image:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,.28),transparent 55%),radial-gradient(ellipse at 50% 115%,rgba(63,82,32,.12),transparent 60%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%233f5220' stroke-opacity='0.10'%3E%3Crect x='30' y='30' width='36' height='36'/%3E%3Crect x='30' y='30' width='36' height='36' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='26'/%3E%3Ccircle cx='48' cy='48' r='5'/%3E%3C/g%3E%3Cg fill='%23c9a227' fill-opacity='0.14'%3E%3Ccircle cx='0' cy='0' r='2'/%3E%3Ccircle cx='96' cy='0' r='2'/%3E%3Ccircle cx='0' cy='96' r='2'/%3E%3Ccircle cx='96' cy='96' r='2'/%3E%3C/g%3E%3C/svg%3E");background-size:auto,auto,96px 96px}
+/* تأثير اللمعة للمخطوطة */
+.headlogo-wrapper{position:relative;display:inline-block;overflow:hidden;border-radius:1rem;vertical-align:middle}
+.headlogo-wrapper::after{content:'';position:absolute;top:-50%;left:-75%;width:50%;height:200%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,0.6) 50%,rgba(255,255,255,0) 100%);transform:rotate(30deg);animation:shine 3.5s infinite;pointer-events:none}
+@keyframes shine{0%{left:-75%}25%{left:125%}100%{left:125%}}
+/* الوضع الليلي / النهاري — خلفية زيتية موحدة */
+#hero-sec{background-color:#3D5A11;background-image:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,.35),transparent 55%),radial-gradient(ellipse at 50% 115%,rgba(0,0,0,.45),transparent 60%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23d4af37' stroke-opacity='0.12'%3E%3Crect x='30' y='30' width='36' height='36'/%3E%3Crect x='30' y='30' width='36' height='36' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='26'/%3E%3Ccircle cx='48' cy='48' r='5'/%3E%3C/g%3E%3Cg fill='%23d4af37' fill-opacity='0.12'%3E%3Ccircle cx='0' cy='0' r='2'/%3E%3Ccircle cx='96' cy='0' r='2'/%3E%3Ccircle cx='0' cy='96' r='2'/%3E%3Ccircle cx='96' cy='96' r='2'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(155deg,#232d0a 0%,#3D5A11 45%,#556b1a 60%,#1e2608 100%);background-size:auto,auto,96px 96px,auto}
+html.day body{background:#f7f3e8}
+html.day #hero-title{color:#ffffff}
+html.day #hero-lead{color:#e2e8f0}
+html.day #hero-slogan{background:rgba(212,175,55,.15);color:#f3e1a1;border-color:rgba(212,175,55,.4)}
+html.day .ms-card{background:#faf6ec;border-color:rgba(212,175,55,.7);box-shadow:0 25px 50px -12px rgba(0,0,0,.5)}
+html.night body{background:#0a1a12;color:#e7e2d2}
+html.night .bg-white{background-color:#10241a!important}
+html.night .bg-slate-50{background-color:#0d2015!important}
+html.night .bg-slate-100{background-color:#0d2015!important}
+html.night .bg-slate-200{background-color:#1a3a28!important}
+html.night .bg-emerald-50{background-color:#1a3a28!important}
+html.night .bg-gold-100{background-color:#3a2f10!important}
+html.night .text-slate-800{color:#ece7d4!important}
+html.night .text-slate-700{color:#ddd6c2!important}
+html.night .text-slate-600{color:#b9c2b2!important}
+html.night .text-slate-500{color:#9aa78f!important}
+html.night .text-slate-400{color:#8a957f!important}
+html.night .text-emerald-950{color:#f3e9c8!important}
+html.night .text-emerald-900{color:#e8d9a8!important}
+html.night .text-emerald-800{color:#d9c98f!important}
+html.night .text-gold-700{color:#e8cd6d!important}
+html.night .text-gold-600{color:#e8cd6d!important}
+html.night .border-slate-100,html.night .border-slate-200,html.night .border-slate-300{border-color:#23402f!important}
+html.night header{background:rgba(10,26,18,.96)!important}
+html.night #drawer{background:#10241a!important}
+html.night #drawer nav button:hover{background:#1a3a28!important}
+html.night #mobile-nav{background:#10241a!important}
+html.night input,html.night select,html.night textarea{background-color:#0d2015!important;color:#ece7d4!important;border-color:#23402f!important}
+html.night input::placeholder,html.night textarea::placeholder{color:#7d8875!important}
 .islamic-pattern{background-color:#0a2a1c;background-image:radial-gradient(ellipse at 50% -10%,rgba(212,175,55,.30),transparent 55%),radial-gradient(ellipse at 50% 115%,rgba(0,0,0,.50),transparent 60%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23d4af37' stroke-opacity='0.10'%3E%3Crect x='30' y='30' width='36' height='36'/%3E%3Crect x='30' y='30' width='36' height='36' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='26'/%3E%3Ccircle cx='48' cy='48' r='5'/%3E%3Cpath d='M48 8v12M48 76v12M8 48h12M76 48h12'/%3E%3C/g%3E%3Cg fill='%23d4af37' fill-opacity='0.10'%3E%3Ccircle cx='0' cy='0' r='2'/%3E%3Ccircle cx='96' cy='0' r='2'/%3E%3Ccircle cx='0' cy='96' r='2'/%3E%3Ccircle cx='96' cy='96' r='2'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(155deg,#04170f 0%,#0b3524 40%,#14532d 62%,#071f13 100%);background-size:auto,auto,96px 96px,auto}
 ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#f1f1f1}
 ::-webkit-scrollbar-thumb{background:#043927;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#b38f23}
@@ -54,6 +91,7 @@ body{font-family:'Cairo',sans-serif;background-color:#f8fafc}
       <div class="hidden md:flex items-center gap-2">
         <button onclick="switchTab('register')" class="bg-emerald-900 hover:bg-emerald-800 text-gold-300 font-semibold px-4 py-2 rounded-lg text-sm border border-gold-500 shadow transition flex items-center gap-2"><i class="fa-solid fa-pen-to-square text-base"></i> سجل الآن</button>
       </div>
+      <button id="theme-btn" onclick="toggleTheme()" class="w-11 h-11 rounded-xl bg-emerald-900 text-gold-300 text-lg flex items-center justify-center border border-gold-500 shrink-0" aria-label="ليلي / نهاري">☀️</button>
       <button onclick="toggleDrawer(true)" class="md:hidden w-11 h-11 rounded-xl bg-emerald-900 text-gold-300 text-xl flex items-center justify-center border border-gold-500 shrink-0" aria-label="القائمة">☰</button>
     </div>
   </div>
@@ -76,11 +114,13 @@ body{font-family:'Cairo',sans-serif;background-color:#f8fafc}
 <main class="flex-grow">
 <!-- ================= HOME ================= -->
 <section id="tab-home" class="tab-content">
-  <div class="relative islamic-pattern text-white py-14 sm:py-20 px-4 overflow-hidden border-b-4 border-gold-500">
-    <div class="max-w-5xl mx-auto text-center relative z-10 space-y-5">
-      <img src="mahktot.png" alt="مخطوطة مركز الإمام نافع" class="w-72 sm:w-[28rem] max-w-full h-auto mx-auto drop-shadow-2xl" onerror="heroLogoFallback(this)">
+  <div id="hero-sec" class="relative islamic-pattern text-white py-14 sm:py-20 px-4 overflow-hidden border-b-4 border-gold-500">
+    <div class="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center gap-5">
+      <div class="ms-card block w-fit mx-auto bg-[#faf6ec] rounded-3xl px-6 py-4 border-2 border-gold-500/70 shadow-2xl text-center">
+      <span class="headlogo-wrapper"><img src="mahktot.png" alt="مخطوطة مركز الإمام نافع" class="w-72 sm:w-[26rem] max-w-full h-auto block mx-auto" onerror="heroLogoFallback(this)"></span>
       <div id="hero-logo-fb" style="display:none" class="w-20 h-20 mx-auto rounded-2xl bg-emerald-900 border-2 border-gold-500 items-center justify-center text-gold-400 text-4xl"><i class="fa-solid fa-book-quran"></i></div>
-      <div id="hero-slogan" class="inline-block px-5 py-2 bg-gold-500/15 rounded-full border border-gold-400/40 text-gold-300 text-sm sm:text-base font-bold quran-font">حيث تتصل القلوب برب السماء .. والأسانيد بسيد الأنبياء ﷺ</div>
+      </div>
+      <div class="flex items-center justify-center gap-3 quran-font font-bold text-base sm:text-lg"><span class="h-px w-10 sm:w-20 bg-gold-500/80"></span><span id="hero-slogan" class="text-gold-300">حيث تتصل القلوب برب السماء .. والأسانيد بسيد الأنبياء ﷺ</span><span class="h-px w-10 sm:w-20 bg-gold-500/80"></span></div>
       <h1 id="hero-title" class="text-3xl sm:text-5xl font-black leading-tight quran-font">صَرۡحُ القُرۡآنِ وَالإِقۡرَاءِ بٱلأَسَانِيدِ المُتَّصِلَةِ</h1>
       <p id="hero-lead" class="text-slate-200 text-base sm:text-lg max-w-3xl mx-auto font-light leading-relaxed">نعتني بضبط تلاوة كتاب الله، ونشر القراءات المتواترة على أيدي نخبة من المقرئين بالإسناد العالي.</p>
       <div class="flex justify-center pt-2">
@@ -251,7 +291,12 @@ body{font-family:'Cairo',sans-serif;background-color:#f8fafc}
         <div class="flex items-start gap-4"><div class="w-10 h-10 bg-gold-500/20 rounded-lg flex items-center justify-center text-gold-400 shrink-0"><i class="fa-regular fa-clock"></i></div><div><p class="text-slate-300 text-xs">أوقات العمل</p><p id="contact-hours-text" class="font-semibold">السبت - الخميس: 4:00 عصراً - 8:30 مساءً</p></div></div>
       </div>
       <div id="contact-extra" class="grid gap-2"></div>
-      <iframe id="cMap" title="خريطة المركز" loading="lazy" class="w-full h-44 rounded-xl border border-gold-500/30" src="https://www.openstreetmap.org/export/embed.html?bbox=44.13%2C13.93%2C44.22%2C13.99&layer=mapnik&marker=13.968%2C44.173"></iframe>
+      <a id="cMap" href="https://maps.app.goo.gl/JUCfi1B7du5SxgcYA" target="_blank" rel="noopener" class="block bg-white border-2 border-dashed border-gold-500 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition">
+        <i class="fa-solid fa-location-dot text-4xl text-emerald-800"></i>
+        <div class="font-extrabold text-emerald-950 mt-2">📍 رابط الموقع</div>
+        <div id="cMapTxt" class="text-xs text-slate-500 mt-1" dir="ltr">maps.app.goo.gl/JUCfi1B7du5SxgcYA</div>
+        <span class="inline-block mt-3 bg-emerald-900 text-gold-300 text-sm font-bold px-6 py-2.5 rounded-xl">فتح الموقع على الخريطة</span>
+      </a>
     </div>
     <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
       <form onsubmit="return false" class="space-y-4">
@@ -366,6 +411,7 @@ body{font-family:'Cairo',sans-serif;background-color:#f8fafc}
         <div><label class="block text-xs font-semibold mb-1">البريد</label><input data-set="email" dir="ltr" type="email" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
         <div><label class="block text-xs font-semibold mb-1">العنوان</label><input data-set="address" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
         <div><label class="block text-xs font-semibold mb-1">أوقات العمل (افصل بـ | لسطر جديد)</label><input data-set="hours" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
+        <div><label class="block text-xs font-semibold mb-1">رابط الموقع على الخريطة</label><input data-set="mapLink" dir="ltr" class="w-full px-3 py-2 border rounded-xl text-sm"></div>
       </div></details>
       <details class="border rounded-xl overflow-hidden"><summary class="px-4 py-3 font-bold text-sm cursor-pointer bg-slate-50 select-none">✨ نصوص الواجهة الرئيسية</summary><div class="p-4 space-y-3">
         <div><label class="block text-xs font-semibold mb-1">العنوان القرآني الكبير</label><textarea data-set="heroTitle" rows="2" class="w-full px-3 py-2 border rounded-xl text-sm quran-font"></textarea></div>
@@ -531,7 +577,7 @@ function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;'
 function wa(text){ return 'https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(text); }
 
 const DEF_SETTINGS = { title:'مركز الإمام نافع', subtitle:'لتعليم القرآن الكريم وتلقي القراءات', logoUrl:'logo.png',
-  phone:'+967 777 791 043', email:MAIL, address:'اليمن - إب - شارع العدين - جامع عمر بن الخطاب', hours:'السبت - الأربعاء | بنين: 4:00 عصرًا | بنات: 9:00 صباحًا',
+  phone:'+967 777 791 043', email:MAIL, address:'اليمن - إب - شارع العدين - جامع عمر بن الخطاب', hours:'السبت - الأربعاء | بنين: 4:00 عصرًا | بنات: 9:00 صباحًا', mapLink:'https://maps.app.goo.gl/JUCfi1B7du5SxgcYA',
   slogan:'حيث تتصل القلوب برب السماء .. والأسانيد بسيد الأنبياء ﷺ',
   heroLead:'نعتني بضبط تلاوة كتاب الله، ونشر القراءات المتواترة على أيدي نخبة من المقرئين بالإسناد العالي.',
   heroTitle:'صَرۡحُ القُرۡآنِ وَالإِقۡرَاءِ بٱلأَسَانِيدِ المُتَّصِلَةِ',
@@ -627,15 +673,8 @@ let newsCat = 'الكل', compTab = 'current';
   if(!siteSettings.heroLead){ siteSettings.heroLead=DEF_SETTINGS.heroLead; ch=true; }
   Object.keys(DEF_SETTINGS).forEach(k=>{ if(siteSettings[k]===undefined){ try{ siteSettings[k]=JSON.parse(JSON.stringify(DEF_SETTINGS[k])); ch=true; }catch(e){} } });
   if(ch){ save(K.settings,siteSettings); }
-  // الإعلانات: اعتماد نص الحلقات الحضورية وحذف إعلان مجلس قالون
-  const NEW_ANN={title:'التسجيل مفتوح للحلقات الحضورية بأكثر من مسجد في محافظة إب.',desc:'التسجيل متاح لجميع الفئات — سجل الآن عبر واتساب.'};
-  let annCh=false;
-  annList=annList.filter(a=>{ if(/قالون|مجلس إقراء/.test(a.title||'')){ annCh=true; return false; } return true; });
-  const _seen={}; annList=annList.filter(a=>{ const t=(a.title||'').trim(); if(_seen[t]){ annCh=true; return false; } _seen[t]=1; return true; });
-  const _mi=annList.findIndex(a=>/المغتربين|عن بعد|الزوم/.test((a.title||'')+(a.desc||'')));
-  if(_mi>-1){ annList[_mi]=NEW_ANN; annCh=true; }
-  if(!annList.some(a=>/الحلقات الحضورية/.test(a.title||''))){ annList.unshift(NEW_ANN); annCh=true; }
-  if(annCh) save(K.ann,annList);
+  // الإعلانات: توحيد جذري — أي صيغة مشابهة تُدمج في نسخة واحدة ولا تتكرر أبداً
+  sanitizeAnn();
   // الأخبار: تحديث نص التكريم
   let newsCh=false;
   newsList.forEach(n=>{ if(n.body&&n.body.includes('في قراءة نافع وعاصم')){ n.body=n.body.replace('بعد ختم السند المتصل في قراءة نافع وعاصم','بعد ختم السند المتصل في القراءات والروايات المختلفة'); newsCh=true; } });
@@ -663,7 +702,7 @@ function statusLabel(s){ s=normStatus(s); return s==='past'?'⚪ منتهية':(
 
 window.addEventListener('DOMContentLoaded', ()=>{
   if(location.hash==='#admin'){ openAdminAuthModal(); history.replaceState(null,'','#home'); }
-  applySettings(); populateBirth(); renderTracks(); renderNews(); renderActivities(); renderComps(); renderAnn(); renderMsgs(); renderSubs(); updateOnline();
+  applySettings(); populateBirth(); renderTracks(); renderNews(); renderActivities(); renderComps(); renderAnn(); renderMsgs(); renderSubs(); updateOnline(); applyTheme();
   switchTab('home');
   document.getElementById('admin-pass-input').addEventListener('keydown',e=>{if(e.key==='Enter')verifyAdminPassword();});
   if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{})); }
@@ -678,6 +717,7 @@ function applySettings(){
   const _em=document.getElementById('contact-email-text'); if(_em){ _em.textContent=siteSettings.email; _em.href='mailto:'+siteSettings.email; }
   document.getElementById('contact-address-text').textContent=siteSettings.address;
   document.getElementById('contact-hours-text').innerHTML=esc(siteSettings.hours).split('|').join('<br>');
+  const _ml=document.getElementById('cMap'); if(_ml&&siteSettings.mapLink){ _ml.href=siteSettings.mapLink; const _mt=document.getElementById('cMapTxt'); if(_mt) _mt.textContent=siteSettings.mapLink.replace(/^https?:\/\//,''); }
   const logo=document.getElementById('site-logo-img'); if(siteSettings.logoUrl){ logo.style.display=''; logo.src=siteSettings.logoUrl; const lf=document.getElementById('site-logo-fb'); if(lf) lf.style.display='none'; }
   document.getElementById('hero-slogan').textContent=siteSettings.slogan;
   document.getElementById('hero-lead').textContent=siteSettings.heroLead;
@@ -935,12 +975,31 @@ function submitRegister(via){
   document.getElementById('reg-form').reset(); toggleWaField(); calcAge(); renderTracks();
 }
 
+function normAnn(t){ return String(t||'').replace(/[\u064B-\u0652\u0670\u0640]/g,'').replace(/[.\s،,؛:!…\-–—_]+$/,'').replace(/\s+/g,' ').trim(); }
+function sanitizeAnn(){
+  const CANON={title:'التسجيل مفتوح للحلقات الحضورية بأكثر من مسجد في محافظة إب.',desc:'التسجيل متاح لجميع الفئات — سجل الآن عبر واتساب.'};
+  const cKey=normAnn(CANON.title);
+  let ch=false;
+  annList=annList.filter(a=>{ if(/قالون|مجلس إقراء/.test(a.title||'')){ ch=true; return false; } return true; });
+  annList=annList.map(a=>{
+    const k=normAnn(a.title);
+    if(k===cKey||k.indexOf(normAnn('التسجيل مفتوح للحلقات'))===0||/المغتربين|عن بعد|الزوم/.test((a.title||'')+(a.desc||''))){
+      if(a.title!==CANON.title||a.desc!==CANON.desc){ ch=true; return {title:CANON.title,desc:CANON.desc}; }
+    }
+    return a;
+  });
+  const seen={};
+  annList=annList.filter(a=>{ const k=normAnn(a.title); if(seen[k]){ ch=true; return false; } seen[k]=1; return true; });
+  if(!annList.some(a=>normAnn(a.title)===cKey)){ annList.unshift({title:CANON.title,desc:CANON.desc}); ch=true; }
+  if(ch) save(K.ann,annList);
+}
 function renderAnn(){
   const g=document.getElementById('announce-grid'); if(!g) return;
-  g.innerHTML=annList.map(a=>'<div class="bg-white border-r-4 border-gold-500 rounded-2xl p-5 shadow-sm"><b class="text-emerald-950">📢 '+esc(a.title)+'</b><p class="text-slate-500 text-sm mt-1">'+esc(a.desc||'')+'</p></div>').join('')||'<p class="text-slate-400 text-sm">لا توجد إعلانات حالياً.</p>';
+  const seenR={}, uniq=annList.filter(a=>{ const k=normAnn(a.title); if(seenR[k]) return false; seenR[k]=1; return true; });
+  g.innerHTML=uniq.map(a=>'<div class="bg-white border-r-4 border-gold-500 rounded-2xl p-5 shadow-sm"><b class="text-emerald-950">📢 '+esc(a.title)+'</b><p class="text-slate-500 text-sm mt-1">'+esc(a.desc||'')+'</p></div>').join('')||'<p class="text-slate-400 text-sm">لا توجد إعلانات حالياً.</p>';
   const al=document.getElementById('admin-announce-list'); if(al) al.innerHTML=annList.map((a,i)=>'<div class="bg-slate-50 p-3 rounded-xl border flex justify-between items-center text-xs"><div><b>'+esc(a.title)+'</b><div class="text-slate-500">'+esc(a.desc||'')+'</div></div><button onclick="delAnn('+i+')" class="px-2.5 py-1 bg-red-100 text-red-700 rounded font-bold">حذف</button></div>').join('');
 }
-function addAnnounce(){ const t=document.getElementById('ann-title').value.trim(),d=document.getElementById('ann-desc').value.trim(); if(!t){showToast('أدخل عنوان الإعلان');return;} if(annList.some(a=>(a.title||'').trim()===t)){showToast('هذا الإعلان موجود مسبقاً');return;} annList.unshift({title:t,desc:d}); save(K.ann,annList); document.getElementById('ann-title').value='';document.getElementById('ann-desc').value=''; renderAnn(); showToast('تمت إضافة الإعلان'); }
+function addAnnounce(){ const t=document.getElementById('ann-title').value.trim(),d=document.getElementById('ann-desc').value.trim(); if(!t){showToast('أدخل عنوان الإعلان');return;} if(annList.some(a=>normAnn(a.title)===normAnn(t))){showToast('هذا الإعلان موجود مسبقاً');return;} annList.unshift({title:t,desc:d}); save(K.ann,annList); document.getElementById('ann-title').value='';document.getElementById('ann-desc').value=''; renderAnn(); showToast('تمت إضافة الإعلان'); }
 function delAnn(i){ annList.splice(i,1); save(K.ann,annList); renderAnn(); }
 
 function sendInquiry(via){
@@ -1033,7 +1092,7 @@ function handleSaveSettings(e){ e.preventDefault();
   save(K.settings,siteSettings); applySettings(); showToast('تم حفظ إعدادات الموقع');
 }
 function exportData(){ const blob=new Blob([JSON.stringify({siteSettings,newsList,compList,annList,inbox,subs},null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='nafi-backup.json'; a.click(); }
-function importData(inp){ const f=inp.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{ try{ const d=JSON.parse(r.result); if(d.siteSettings)siteSettings=d.siteSettings; if(d.newsList)newsList=d.newsList; if(d.compList)compList=d.compList; if(d.annList)annList=d.annList; if(d.inbox)inbox=d.inbox; if(d.subs)subs=d.subs; save(K.settings,siteSettings);save(K.news,newsList);save(K.comps,compList);save(K.ann,annList);save(K.msgs,inbox);save(K.subs,subs); applySettings();renderNews();renderActivities();renderComps();renderAnn();renderMsgs();renderSubs(); showToast('تم الاستيراد'); }catch(e){ showToast('ملف غير صالح'); } }; r.readAsText(f); inp.value=''; }
+function importData(inp){ const f=inp.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{ try{ const d=JSON.parse(r.result); if(d.siteSettings)siteSettings=d.siteSettings; if(d.newsList)newsList=d.newsList; if(d.compList)compList=d.compList; if(d.annList)annList=d.annList; if(d.inbox)inbox=d.inbox; if(d.subs)subs=d.subs; save(K.settings,siteSettings);save(K.news,newsList);save(K.comps,compList);save(K.ann,annList);save(K.msgs,inbox);save(K.subs,subs); sanitizeAnn(); applySettings();renderNews();renderActivities();renderComps();renderAnn();renderMsgs();renderSubs(); showToast('تم الاستيراد'); }catch(e){ showToast('ملف غير صالح'); } }; r.readAsText(f); inp.value=''; }
 function resetAll(){ if(!confirm('استعادة الافتراضي؟'))return; siteSettings=JSON.parse(JSON.stringify(DEF_SETTINGS)); newsList=JSON.parse(JSON.stringify(DEF_NEWS)); compList=JSON.parse(JSON.stringify(DEF_COMPS)); annList=JSON.parse(JSON.stringify(DEF_ANN)); inbox=[]; save(K.settings,siteSettings);save(K.news,newsList);save(K.comps,compList);save(K.ann,annList);save(K.msgs,inbox); applySettings();renderNews();renderActivities();renderComps();renderAnn();renderMsgs();renderSubs(); }
 
 /* دخول سري مخفي عن الزوار */
@@ -1058,6 +1117,8 @@ function updateOnline(){ var b=document.getElementById('offline-bar'); if(!b) re
 window.addEventListener('online',function(){ updateOnline(); showToast('عاد الاتصال بالإنترنت'); });
 window.addEventListener('offline',updateOnline);
 
+function applyTheme(){ let t='night'; try{ t=localStorage.getItem('nafi_theme')||'night'; }catch(e){} document.documentElement.classList.toggle('day',t==='day'); document.documentElement.classList.toggle('night',t!=='day'); const b=document.getElementById('theme-btn'); if(b) b.textContent=(t==='day'?'🌙':'☀️'); }
+function toggleTheme(){ let cur='night'; try{ cur=localStorage.getItem('nafi_theme')||'night'; localStorage.setItem('nafi_theme',cur==='day'?'night':'day'); }catch(e){} applyTheme(); }
 /* PWA */
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; document.getElementById('install-banner').classList.remove('hidden'); const b=document.getElementById('install-top-btn'); if(b){b.classList.remove('hidden');b.classList.add('flex');} });
